@@ -1,0 +1,447 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B741FA06FBD00EA873F /* AppDelegate.m */; };
+		C1B29B781FA06FBD00EA873F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B771FA06FBD00EA873F /* ViewController.m */; };
+		C1B29B7B1FA06FBD00EA873F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B791FA06FBD00EA873F /* Main.storyboard */; };
+		C1B29B7D1FA06FBD00EA873F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */; };
+		C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */; };
+		C1B29B831FA06FBD00EA873F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B821FA06FBD00EA873F /* main.m */; };
+		C1B29B8D1FA06FBD00EA873F /* MPQRPaymentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1B29B891FA06FBD00EA873F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1B29B681FA06FBC00EA873F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1B29B6F1FA06FBD00EA873F;
+			remoteInfo = MPQRPayment;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C1B29B701FA06FBD00EA873F /* MPQRPayment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPQRPayment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B29B731FA06FBD00EA873F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C1B29B741FA06FBD00EA873F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C1B29B761FA06FBD00EA873F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C1B29B771FA06FBD00EA873F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C1B29B7A1FA06FBD00EA873F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1B29B7F1FA06FBD00EA873F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C1B29B811FA06FBD00EA873F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1B29B821FA06FBD00EA873F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MPQRPaymentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRPaymentTests.m; sourceTree = "<group>"; };
+		C1B29B8E1FA06FBD00EA873F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1B29B6D1FA06FBD00EA873F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B29B851FA06FBD00EA873F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1B29B671FA06FBC00EA873F = {
+			isa = PBXGroup;
+			children = (
+				C1B29B721FA06FBD00EA873F /* MPQRPayment */,
+				C1B29B8B1FA06FBD00EA873F /* MPQRPaymentTests */,
+				C1B29B711FA06FBD00EA873F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1B29B711FA06FBD00EA873F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1B29B701FA06FBD00EA873F /* MPQRPayment.app */,
+				C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1B29B721FA06FBD00EA873F /* MPQRPayment */ = {
+			isa = PBXGroup;
+			children = (
+				C1B29B731FA06FBD00EA873F /* AppDelegate.h */,
+				C1B29B741FA06FBD00EA873F /* AppDelegate.m */,
+				C1B29B761FA06FBD00EA873F /* ViewController.h */,
+				C1B29B771FA06FBD00EA873F /* ViewController.m */,
+				C1B29B791FA06FBD00EA873F /* Main.storyboard */,
+				C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */,
+				C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */,
+				C1B29B811FA06FBD00EA873F /* Info.plist */,
+				C1B29B821FA06FBD00EA873F /* main.m */,
+			);
+			path = MPQRPayment;
+			sourceTree = "<group>";
+		};
+		C1B29B8B1FA06FBD00EA873F /* MPQRPaymentTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */,
+				C1B29B8E1FA06FBD00EA873F /* Info.plist */,
+			);
+			path = MPQRPaymentTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1B29B6F1FA06FBD00EA873F /* MPQRPayment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1B29B911FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPayment" */;
+			buildPhases = (
+				C1B29B6C1FA06FBD00EA873F /* Sources */,
+				C1B29B6D1FA06FBD00EA873F /* Frameworks */,
+				C1B29B6E1FA06FBD00EA873F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MPQRPayment;
+			productName = MPQRPayment;
+			productReference = C1B29B701FA06FBD00EA873F /* MPQRPayment.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1B29B871FA06FBD00EA873F /* MPQRPaymentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1B29B941FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPaymentTests" */;
+			buildPhases = (
+				C1B29B841FA06FBD00EA873F /* Sources */,
+				C1B29B851FA06FBD00EA873F /* Frameworks */,
+				C1B29B861FA06FBD00EA873F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1B29B8A1FA06FBD00EA873F /* PBXTargetDependency */,
+			);
+			name = MPQRPaymentTests;
+			productName = MPQRPaymentTests;
+			productReference = C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1B29B681FA06FBC00EA873F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Muchamad Chozinul Amri";
+				TargetAttributes = {
+					C1B29B6F1FA06FBD00EA873F = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					C1B29B871FA06FBD00EA873F = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C1B29B6F1FA06FBD00EA873F;
+					};
+				};
+			};
+			buildConfigurationList = C1B29B6B1FA06FBC00EA873F /* Build configuration list for PBXProject "MPQRPayment" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1B29B671FA06FBC00EA873F;
+			productRefGroup = C1B29B711FA06FBD00EA873F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1B29B6F1FA06FBD00EA873F /* MPQRPayment */,
+				C1B29B871FA06FBD00EA873F /* MPQRPaymentTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1B29B6E1FA06FBD00EA873F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */,
+				C1B29B7D1FA06FBD00EA873F /* Assets.xcassets in Resources */,
+				C1B29B7B1FA06FBD00EA873F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B29B861FA06FBD00EA873F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1B29B6C1FA06FBD00EA873F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B29B781FA06FBD00EA873F /* ViewController.m in Sources */,
+				C1B29B831FA06FBD00EA873F /* main.m in Sources */,
+				C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1B29B841FA06FBD00EA873F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1B29B8D1FA06FBD00EA873F /* MPQRPaymentTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1B29B8A1FA06FBD00EA873F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1B29B6F1FA06FBD00EA873F /* MPQRPayment */;
+			targetProxy = C1B29B891FA06FBD00EA873F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C1B29B791FA06FBD00EA873F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1B29B7A1FA06FBD00EA873F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1B29B7F1FA06FBD00EA873F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C1B29B8F1FA06FBD00EA873F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C1B29B901FA06FBD00EA873F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1B29B921FA06FBD00EA873F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FARWN7FEXX;
+				INFOPLIST_FILE = MPQRPayment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1B29B931FA06FBD00EA873F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FARWN7FEXX;
+				INFOPLIST_FILE = MPQRPayment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1B29B951FA06FBD00EA873F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FARWN7FEXX;
+				INFOPLIST_FILE = MPQRPaymentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPaymentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MPQRPayment.app/MPQRPayment";
+			};
+			name = Debug;
+		};
+		C1B29B961FA06FBD00EA873F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FARWN7FEXX;
+				INFOPLIST_FILE = MPQRPaymentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPaymentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MPQRPayment.app/MPQRPayment";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1B29B6B1FA06FBC00EA873F /* Build configuration list for PBXProject "MPQRPayment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B29B8F1FA06FBD00EA873F /* Debug */,
+				C1B29B901FA06FBD00EA873F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1B29B911FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPayment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B29B921FA06FBD00EA873F /* Debug */,
+				C1B29B931FA06FBD00EA873F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1B29B941FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPaymentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1B29B951FA06FBD00EA873F /* Debug */,
+				C1B29B961FA06FBD00EA873F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1B29B681FA06FBC00EA873F /* Project object */;
+}
