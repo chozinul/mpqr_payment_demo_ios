@@ -7,8 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E04A49503777A4884AF3B2C /* Pods_MPQRPayment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD9B435CCAC46108932C17 /* Pods_MPQRPayment.framework */; };
+		2B3F55C822449BB873B477F8 /* Pods_MPQRPaymentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0280776098EA1A7741FE41 /* Pods_MPQRPaymentTests.framework */; };
+		C10736B11FA08C0000646ACE /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B01FA08C0000646ACE /* Transaction.m */; };
+		C10736B51FA08FC100646ACE /* CurrencyEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B41FA08D7F00646ACE /* CurrencyEnum.m */; };
+		C10736B81FA093E500646ACE /* PaymentInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B71FA093E500646ACE /* PaymentInstrument.m */; };
+		C10736BB1FA09B9000646ACE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736BA1FA09B9000646ACE /* User.m */; };
+		C10736BF1FA0CD6500646ACE /* MPQRService.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736BE1FA0CD6500646ACE /* MPQRService.m */; };
+		C10736C31FA0CF7D00646ACE /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736C21FA0CF7D00646ACE /* LoginResponse.m */; };
+		C10736C71FA0D50200646ACE /* MPQRServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736C61FA0D50200646ACE /* MPQRServer.m */; };
+		C10736CA1FA14E8D00646ACE /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736C81FA14E8D00646ACE /* Receipt.m */; };
+		C10736CD1FA1508B00646ACE /* Merchant.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736CC1FA1508B00646ACE /* Merchant.m */; };
+		C10736D01FA1753100646ACE /* PaymentData.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736CF1FA1753100646ACE /* PaymentData.m */; };
+		C10736D41FA1798500646ACE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736D31FA1798500646ACE /* LoginViewController.m */; };
+		C10736D71FA17C8200646ACE /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736D61FA17C8200646ACE /* LoginManager.m */; };
+		C10736DB1FA1AA8900646ACE /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736DA1FA1AA8900646ACE /* UserManager.m */; };
+		C10736DF1FA1F71A00646ACE /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736DE1FA1F71A00646ACE /* PaymentManager.m */; };
+		C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E11FA21E1E00646ACE /* PaymentViewController.m */; };
+		C10736E61FA2D5A800646ACE /* DummyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E51FA2D5A800646ACE /* DummyTableViewController.m */; };
+		C10736E91FA2DADA00646ACE /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E81FA2DADA00646ACE /* TransactionListViewController.m */; };
+		C10736EC1FA320D400646ACE /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */; };
 		C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B741FA06FBD00EA873F /* AppDelegate.m */; };
-		C1B29B781FA06FBD00EA873F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B771FA06FBD00EA873F /* ViewController.m */; };
+		C1B29B781FA06FBD00EA873F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B771FA06FBD00EA873F /* MainViewController.m */; };
 		C1B29B7B1FA06FBD00EA873F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B791FA06FBD00EA873F /* Main.storyboard */; };
 		C1B29B7D1FA06FBD00EA873F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */; };
 		C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */; };
@@ -27,11 +47,52 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02957072AFC40B903C4C0997 /* Pods-MPQRPaymentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPQRPaymentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPQRPaymentTests/Pods-MPQRPaymentTests.release.xcconfig"; sourceTree = "<group>"; };
+		090F6C11300E6AEE939A12B4 /* Pods-MPQRPaymentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPQRPaymentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPQRPaymentTests/Pods-MPQRPaymentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E1DBE0D57F0A70FFCFA335C /* Pods-MPQRPayment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPQRPayment.release.xcconfig"; path = "Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment.release.xcconfig"; sourceTree = "<group>"; };
+		88BD9B435CCAC46108932C17 /* Pods_MPQRPayment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MPQRPayment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D394D60302AD498BA79033 /* Pods-MPQRPayment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPQRPayment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment.debug.xcconfig"; sourceTree = "<group>"; };
+		C10736AF1FA08C0000646ACE /* Transaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		C10736B01FA08C0000646ACE /* Transaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		C10736B31FA08D7F00646ACE /* CurrencyEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyEnum.h; sourceTree = "<group>"; };
+		C10736B41FA08D7F00646ACE /* CurrencyEnum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyEnum.m; sourceTree = "<group>"; };
+		C10736B61FA093E500646ACE /* PaymentInstrument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentInstrument.h; sourceTree = "<group>"; };
+		C10736B71FA093E500646ACE /* PaymentInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentInstrument.m; sourceTree = "<group>"; };
+		C10736B91FA09B9000646ACE /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C10736BA1FA09B9000646ACE /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C10736BD1FA0CD6500646ACE /* MPQRService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPQRService.h; sourceTree = "<group>"; };
+		C10736BE1FA0CD6500646ACE /* MPQRService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRService.m; sourceTree = "<group>"; };
+		C10736C11FA0CF7D00646ACE /* LoginResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginResponse.h; sourceTree = "<group>"; };
+		C10736C21FA0CF7D00646ACE /* LoginResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginResponse.m; sourceTree = "<group>"; };
+		C10736C51FA0D50200646ACE /* MPQRServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPQRServer.h; sourceTree = "<group>"; };
+		C10736C61FA0D50200646ACE /* MPQRServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRServer.m; sourceTree = "<group>"; };
+		C10736C81FA14E8D00646ACE /* Receipt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
+		C10736C91FA14E8D00646ACE /* Receipt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
+		C10736CB1FA1508B00646ACE /* Merchant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Merchant.h; sourceTree = "<group>"; };
+		C10736CC1FA1508B00646ACE /* Merchant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Merchant.m; sourceTree = "<group>"; };
+		C10736CE1FA1753100646ACE /* PaymentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentData.h; sourceTree = "<group>"; };
+		C10736CF1FA1753100646ACE /* PaymentData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentData.m; sourceTree = "<group>"; };
+		C10736D21FA1798500646ACE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C10736D31FA1798500646ACE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C10736D51FA17C8200646ACE /* LoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		C10736D61FA17C8200646ACE /* LoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		C10736D91FA1AA8900646ACE /* UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		C10736DA1FA1AA8900646ACE /* UserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		C10736DD1FA1F71A00646ACE /* PaymentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentManager.h; sourceTree = "<group>"; };
+		C10736DE1FA1F71A00646ACE /* PaymentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
+		C10736E01FA21E1E00646ACE /* PaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		C10736E11FA21E1E00646ACE /* PaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		C10736E41FA2D5A800646ACE /* DummyTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyTableViewController.h; sourceTree = "<group>"; };
+		C10736E51FA2D5A800646ACE /* DummyTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyTableViewController.m; sourceTree = "<group>"; };
+		C10736E71FA2DADA00646ACE /* TransactionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionListViewController.h; sourceTree = "<group>"; };
+		C10736E81FA2DADA00646ACE /* TransactionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
+		C10736EA1FA320D400646ACE /* TransactionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
+		C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
 		C1B29B701FA06FBD00EA873F /* MPQRPayment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPQRPayment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B29B731FA06FBD00EA873F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1B29B741FA06FBD00EA873F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C1B29B761FA06FBD00EA873F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C1B29B771FA06FBD00EA873F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C1B29B761FA06FBD00EA873F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C1B29B771FA06FBD00EA873F /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C1B29B7A1FA06FBD00EA873F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1B29B7F1FA06FBD00EA873F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +101,7 @@
 		C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MPQRPaymentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRPaymentTests.m; sourceTree = "<group>"; };
 		C1B29B8E1FA06FBD00EA873F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB0280776098EA1A7741FE41 /* Pods_MPQRPaymentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MPQRPaymentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E04A49503777A4884AF3B2C /* Pods_MPQRPayment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +117,114 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3F55C822449BB873B477F8 /* Pods_MPQRPaymentTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63DBFDAD1A788945C629C734 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8D394D60302AD498BA79033 /* Pods-MPQRPayment.debug.xcconfig */,
+				3E1DBE0D57F0A70FFCFA335C /* Pods-MPQRPayment.release.xcconfig */,
+				090F6C11300E6AEE939A12B4 /* Pods-MPQRPaymentTests.debug.xcconfig */,
+				02957072AFC40B903C4C0997 /* Pods-MPQRPaymentTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C10736B21FA08D6D00646ACE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C10736B31FA08D7F00646ACE /* CurrencyEnum.h */,
+				C10736B41FA08D7F00646ACE /* CurrencyEnum.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C10736BC1FA0CCD100646ACE /* Netwrok */ = {
+			isa = PBXGroup;
+			children = (
+				C10736C41FA0D4E600646ACE /* MockServer */,
+				C10736C01FA0CF4500646ACE /* LoginResponse */,
+				C10736BD1FA0CD6500646ACE /* MPQRService.h */,
+				C10736BE1FA0CD6500646ACE /* MPQRService.m */,
+			);
+			path = Netwrok;
+			sourceTree = "<group>";
+		};
+		C10736C01FA0CF4500646ACE /* LoginResponse */ = {
+			isa = PBXGroup;
+			children = (
+				C10736C11FA0CF7D00646ACE /* LoginResponse.h */,
+				C10736C21FA0CF7D00646ACE /* LoginResponse.m */,
+			);
+			path = LoginResponse;
+			sourceTree = "<group>";
+		};
+		C10736C41FA0D4E600646ACE /* MockServer */ = {
+			isa = PBXGroup;
+			children = (
+				C10736C51FA0D50200646ACE /* MPQRServer.h */,
+				C10736C61FA0D50200646ACE /* MPQRServer.m */,
+			);
+			path = MockServer;
+			sourceTree = "<group>";
+		};
+		C10736D11FA1795E00646ACE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C10736D21FA1798500646ACE /* LoginViewController.h */,
+				C10736D31FA1798500646ACE /* LoginViewController.m */,
+				C10736D51FA17C8200646ACE /* LoginManager.h */,
+				C10736D61FA17C8200646ACE /* LoginManager.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C10736D81FA1AA5900646ACE /* AppManagers */ = {
+			isa = PBXGroup;
+			children = (
+				C10736D91FA1AA8900646ACE /* UserManager.h */,
+				C10736DA1FA1AA8900646ACE /* UserManager.m */,
+			);
+			path = AppManagers;
+			sourceTree = "<group>";
+		};
+		C10736DC1FA1F6DA00646ACE /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				C10736DD1FA1F71A00646ACE /* PaymentManager.h */,
+				C10736DE1FA1F71A00646ACE /* PaymentManager.m */,
+				C10736E01FA21E1E00646ACE /* PaymentViewController.h */,
+				C10736E11FA21E1E00646ACE /* PaymentViewController.m */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		C10736E31FA2D57100646ACE /* TransactionHistory */ = {
+			isa = PBXGroup;
+			children = (
+				C10736E41FA2D5A800646ACE /* DummyTableViewController.h */,
+				C10736E51FA2D5A800646ACE /* DummyTableViewController.m */,
+				C10736E71FA2DADA00646ACE /* TransactionListViewController.h */,
+				C10736E81FA2DADA00646ACE /* TransactionListViewController.m */,
+				C10736EA1FA320D400646ACE /* TransactionDetailViewController.h */,
+				C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */,
+			);
+			path = TransactionHistory;
+			sourceTree = "<group>";
+		};
 		C1B29B671FA06FBC00EA873F = {
 			isa = PBXGroup;
 			children = (
 				C1B29B721FA06FBD00EA873F /* MPQRPayment */,
 				C1B29B8B1FA06FBD00EA873F /* MPQRPaymentTests */,
 				C1B29B711FA06FBD00EA873F /* Products */,
+				63DBFDAD1A788945C629C734 /* Pods */,
+				E3EE7BA012542456D6C4B740 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,10 +240,17 @@
 		C1B29B721FA06FBD00EA873F /* MPQRPayment */ = {
 			isa = PBXGroup;
 			children = (
+				C10736E31FA2D57100646ACE /* TransactionHistory */,
+				C10736DC1FA1F6DA00646ACE /* Payment */,
+				C10736D81FA1AA5900646ACE /* AppManagers */,
+				C10736D11FA1795E00646ACE /* Login */,
+				C10736BC1FA0CCD100646ACE /* Netwrok */,
+				C10736B21FA08D6D00646ACE /* Utils */,
+				C1B29B991FA0886600EA873F /* Model */,
 				C1B29B731FA06FBD00EA873F /* AppDelegate.h */,
 				C1B29B741FA06FBD00EA873F /* AppDelegate.m */,
-				C1B29B761FA06FBD00EA873F /* ViewController.h */,
-				C1B29B771FA06FBD00EA873F /* ViewController.m */,
+				C1B29B761FA06FBD00EA873F /* MainViewController.h */,
+				C1B29B771FA06FBD00EA873F /* MainViewController.m */,
 				C1B29B791FA06FBD00EA873F /* Main.storyboard */,
 				C1B29B7C1FA06FBD00EA873F /* Assets.xcassets */,
 				C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */,
@@ -103,6 +269,34 @@
 			path = MPQRPaymentTests;
 			sourceTree = "<group>";
 		};
+		C1B29B991FA0886600EA873F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C10736C91FA14E8D00646ACE /* Receipt.h */,
+				C10736C81FA14E8D00646ACE /* Receipt.m */,
+				C10736AF1FA08C0000646ACE /* Transaction.h */,
+				C10736B01FA08C0000646ACE /* Transaction.m */,
+				C10736B61FA093E500646ACE /* PaymentInstrument.h */,
+				C10736B71FA093E500646ACE /* PaymentInstrument.m */,
+				C10736B91FA09B9000646ACE /* User.h */,
+				C10736BA1FA09B9000646ACE /* User.m */,
+				C10736CB1FA1508B00646ACE /* Merchant.h */,
+				C10736CC1FA1508B00646ACE /* Merchant.m */,
+				C10736CE1FA1753100646ACE /* PaymentData.h */,
+				C10736CF1FA1753100646ACE /* PaymentData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3EE7BA012542456D6C4B740 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88BD9B435CCAC46108932C17 /* Pods_MPQRPayment.framework */,
+				DB0280776098EA1A7741FE41 /* Pods_MPQRPaymentTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,9 +304,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1B29B911FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPayment" */;
 			buildPhases = (
+				86AC68E3A02CE61A7AF5C172 /* [CP] Check Pods Manifest.lock */,
 				C1B29B6C1FA06FBD00EA873F /* Sources */,
 				C1B29B6D1FA06FBD00EA873F /* Frameworks */,
 				C1B29B6E1FA06FBD00EA873F /* Resources */,
+				D7BFF02E47E352F1133D6FCE /* [CP] Embed Pods Frameworks */,
+				65BE93CE7139808F3276F50D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -127,9 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1B29B941FA06FBD00EA873F /* Build configuration list for PBXNativeTarget "MPQRPaymentTests" */;
 			buildPhases = (
+				58B15324A44AA88B60DBCB3E /* [CP] Check Pods Manifest.lock */,
 				C1B29B841FA06FBD00EA873F /* Sources */,
 				C1B29B851FA06FBD00EA873F /* Frameworks */,
 				C1B29B861FA06FBD00EA873F /* Resources */,
+				0569416BCA0CE7408A79F85C /* [CP] Embed Pods Frameworks */,
+				62A2BB3FE00BE34FB95AEA0A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,14 +400,140 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0569416BCA0CE7408A79F85C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MPQRPaymentTests/Pods-MPQRPaymentTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58B15324A44AA88B60DBCB3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MPQRPaymentTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62A2BB3FE00BE34FB95AEA0A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MPQRPaymentTests/Pods-MPQRPaymentTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65BE93CE7139808F3276F50D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86AC68E3A02CE61A7AF5C172 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MPQRPayment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7BFF02E47E352F1133D6FCE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${PODS_ROOT}/MasterpassQRCoreSDK/Frameworks/MasterpassQRCoreSDK.framework",
+				"${PODS_ROOT}/MasterpassQRScanSDK/Frameworks/MasterpassQRScanSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MasterpassQRCoreSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MasterpassQRScanSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C1B29B6C1FA06FBD00EA873F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1B29B781FA06FBD00EA873F /* ViewController.m in Sources */,
+				C10736C71FA0D50200646ACE /* MPQRServer.m in Sources */,
+				C1B29B781FA06FBD00EA873F /* MainViewController.m in Sources */,
+				C10736E61FA2D5A800646ACE /* DummyTableViewController.m in Sources */,
+				C10736DB1FA1AA8900646ACE /* UserManager.m in Sources */,
+				C10736BF1FA0CD6500646ACE /* MPQRService.m in Sources */,
+				C10736BB1FA09B9000646ACE /* User.m in Sources */,
+				C10736D41FA1798500646ACE /* LoginViewController.m in Sources */,
+				C10736B51FA08FC100646ACE /* CurrencyEnum.m in Sources */,
+				C10736D71FA17C8200646ACE /* LoginManager.m in Sources */,
+				C10736C31FA0CF7D00646ACE /* LoginResponse.m in Sources */,
+				C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */,
 				C1B29B831FA06FBD00EA873F /* main.m in Sources */,
+				C10736DF1FA1F71A00646ACE /* PaymentManager.m in Sources */,
+				C10736EC1FA320D400646ACE /* TransactionDetailViewController.m in Sources */,
+				C10736CD1FA1508B00646ACE /* Merchant.m in Sources */,
+				C10736B11FA08C0000646ACE /* Transaction.m in Sources */,
+				C10736E91FA2DADA00646ACE /* TransactionListViewController.m in Sources */,
+				C10736CA1FA14E8D00646ACE /* Receipt.m in Sources */,
+				C10736D01FA1753100646ACE /* PaymentData.m in Sources */,
 				C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */,
+				C10736B81FA093E500646ACE /* PaymentInstrument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +681,7 @@
 		};
 		C1B29B921FA06FBD00EA873F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8D394D60302AD498BA79033 /* Pods-MPQRPayment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -364,11 +691,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
 		C1B29B931FA06FBD00EA873F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E1DBE0D57F0A70FFCFA335C /* Pods-MPQRPayment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -378,11 +708,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
 		C1B29B951FA06FBD00EA873F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 090F6C11300E6AEE939A12B4 /* Pods-MPQRPaymentTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -398,6 +731,7 @@
 		};
 		C1B29B961FA06FBD00EA873F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02957072AFC40B903C4C0997 /* Pods-MPQRPaymentTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
