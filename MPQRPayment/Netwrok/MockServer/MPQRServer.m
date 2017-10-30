@@ -121,7 +121,7 @@
         long senderID = [[parameters objectForKey:@"sender_id"] integerValue];
         double transactionAmount = [[parameters objectForKey:@"transaction_amount"] doubleValue];
         double tip = [[parameters objectForKey:@"tip"] doubleValue];
-        double total = transactionAmount + tip;
+        double total = transactionAmount;
         RLMRealm *realm = [RLMRealm defaultRealm];
         RLMResults<PaymentInstrument*> *instruments = [PaymentInstrument objectsInRealm:realm where:[NSString stringWithFormat:@"id = %ld", senderCardID]];
         

@@ -44,6 +44,7 @@
         completionBlock(nil, error);
     }else
     {
+        NSLog([pushPaymentData dumpData],nil);
         PaymentData* paymentData = [self paymentDataWithPPD:pushPaymentData];
         completionBlock(paymentData, nil);
     }
@@ -63,13 +64,12 @@
                 break;
             
             case percentageConvenienceFee:
-                tipInfo = flatConvenienceFee;
-                tip = [pushPD.valueOfConvenienceFeeFixed doubleValue];
+                tipInfo = percentageConvenienceFee;
+                tip = [pushPD.valueOfConvenienceFeePercentage doubleValue];
                 break;
                 
-            
             case promptedToEnterTip:
-                tipInfo = flatConvenienceFee;
+                tipInfo = promptedToEnterTip;
                 tip = 0;
                 break;
                 

@@ -11,10 +11,12 @@
 #import "LoginManager.h"
 #import "User.h"
 #import "PaymentInstrument.h"
+#import "DialogViewController.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accessCode;
 @property (weak, nonatomic) IBOutlet UITextField *pin;
+@property (weak, nonatomic) IBOutlet UIView *section4;
 
 @end
 
@@ -22,7 +24,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    CGRect f = self.section4.frame;
+    f.origin.y = self.view.bounds.size.height - f.size.height;
+    f.origin.x = 0;
+    f.size.width = self.view.bounds.size.width;
+    self.section4.frame = f;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,8 +66,14 @@
     NSString* strPin = _pin.text;
     
     if (![self isValidUsername:strUserName password:strPin]) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invalid Inputs" message:@"Please enter an access code and 6 digit pin." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        DialogViewController* dialogVC = [DialogViewController new];
+        dialogVC.dialogMessage = @"Invalid access code or pin, please enter a valid access code and 6 digit pin.";
+        dialogVC.positiveResponse = @"OK";
+        [dialogVC showDialogWithContex:self
+                     withYesBlock:^(DialogViewController* dialog){
+                     } withNoBlock:^(DialogViewController* dialog){
+                     }];
+        return;
     }
     
     [[MPQRService sharedInstance] loginWithParameters:@{@"user_name":strUserName, @"password":strPin}
@@ -53,8 +81,13 @@
                                                   [LoginManager sharedInstance].loginInfo = lResponse;
                                                   [self dismissViewControllerAnimated:YES completion:nil];
                                               } failure:^(NSError* error){
-                                                  UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please enter valid access code and 6 digit pin." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                  [alert show];
+                                                  DialogViewController* dialogVC = [DialogViewController new];
+                                                  dialogVC.dialogMessage = @"Login failed, please enter a valid access code and 6 digit pin.";
+                                                  dialogVC.positiveResponse = @"OK";
+                                                  [dialogVC showDialogWithContex:self
+                                                                    withYesBlock:^(DialogViewController* dialog){
+                                                                    } withNoBlock:^(DialogViewController* dialog){
+                                                                    }];
                                               }];
     
 }
@@ -72,4 +105,34 @@
     }
     return true;
 }
+
+
+#pragma mark - textfield movement
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - keyboard movements
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.section4.frame;
+        f.origin.y = self.view.bounds.size.height - f.size.height - keyboardSize.height;
+        self.section4.frame = f;
+    }];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.section4.frame;
+        f.origin.y = self.view.bounds.size.height - f.size.height;
+        self.section4.frame = f;
+    }];
+}
+
 @end

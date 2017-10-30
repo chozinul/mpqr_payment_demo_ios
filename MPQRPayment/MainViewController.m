@@ -18,6 +18,7 @@
 #import "PaymentManager.h"
 #import "PaymentViewController.h"
 #import "TransactionListViewController.h"
+#import "DialogViewController.h"
 
 @import FSPagerView;
 @import MasterpassQRScanSDK;
@@ -25,7 +26,7 @@
 
 @interface MainViewController ()<FSPagerViewDataSource, FSPagerViewDelegate>
 {
-    LoginViewController* loginVC;
+    UIImageView* logoView;
 }
 @property (weak, nonatomic) IBOutlet UIView *sectionOne;
 @property (weak, nonatomic) IBOutlet FSPagerView *pagerView;
@@ -41,8 +42,7 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
     
-    loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+
     
     
     _pagerView.dataSource = self;
@@ -51,11 +51,24 @@
     _pagerView.transformer = [[FSPagerViewTransformer alloc] initWithType:FSPagerViewTransformerTypeOverlap];
     [_pagerView registerClass:[FSPagerViewCell class] forCellWithReuseIdentifier:@"cell"];
     
+    UIImage* logo = [UIImage imageNamed:@"masterpassqr_logo"];
+    logoView = [[UIImageView alloc] initWithImage:logo];
+    
+    UIBarButtonItem* barBtnSetting = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_settings"]
+                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(btnSettingPressed)];
+    
+    UIBarButtonItem* barBtnLogout = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_logout"]
+                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(btnLogoutPressed)];
+    self.navigationItem.rightBarButtonItems = @[barBtnLogout, barBtnSetting];
+    
+    LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     NSString* strUsername = [LoginManager sharedInstance].loginInfo.user;
     if (strUsername) {
         [[MPQRService sharedInstance] getUserWithParameters:@{@"user_name":strUsername}
@@ -63,21 +76,54 @@
                                                         [UserManager sharedInstance].currentUser = user;
                                                         [self reloadUserInterface];
                                                     } failure:^(NSError* error){
-                                                        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"User Not Found" message:@"Related user with this account is not found. Please try again later or contact our administrator." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                        [alert show];
+                                                        [self showAlertWithTitle:@"User Not Found" message:@"Related user with this account is not found. Please try again later or contact our administrator."];
                                                     }];
         
     }
     [self reloadUserInterface];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.titleView = logoView;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationItem.titleView = nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Actions
+
+- (void) btnSettingPressed
+{
+    
+}
+
+- (void) btnLogoutPressed
+{
+    DialogViewController* dvg = [DialogViewController new];
+    dvg.dialogMessage = @"Are you sure you want to logout?";
+    dvg.positiveResponse = @"YES";
+    dvg.negativeResponse = @"CANCEL";
+    [dvg showDialogWithContex:self.navigationController
+                 withYesBlock:^(DialogViewController* dialog){
+                     
+                     [LoginManager sharedInstance].loginInfo = nil;
+                     [UserManager sharedInstance].currentUser = nil;
+                     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+                     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+                     
+                 } withNoBlock:^(DialogViewController* dialog){
+                 }];
+}
 
 - (IBAction)openTransactionHistory:(id)sender {
     
@@ -106,6 +152,8 @@
                         PaymentViewController* pVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
                         pVC.paymentData = pdata;
                         [self.navigationController pushViewController:pVC animated:YES];
+                    }else{
+                        [self showAlertWithTitle:@"Error while scanning" message:@"Cannot scan QR code successfully. Please try again."];
                     }
                 }];
             }];
@@ -150,9 +198,13 @@
 }
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [controller addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:controller animated:true completion:nil];
+    DialogViewController* dialogVC = [DialogViewController new];
+    dialogVC.dialogMessage = message;
+    dialogVC.positiveResponse = @"OK";
+    [dialogVC showDialogWithContex:self
+                      withYesBlock:^(DialogViewController* dialog){
+                      } withNoBlock:^(DialogViewController* dialog){
+                      }];
 }
 
 #pragma mark - Update UI
@@ -219,7 +271,6 @@
     static NSInteger index;
     if (index != pagerView.currentIndex) {
         index = pagerView.currentIndex;
-        NSLog(@"selected index = %ld", index);
         NSString* strUsername = [LoginManager sharedInstance].loginInfo.user;
         [[MPQRService sharedInstance] changeDefaultCardWithParameters:@{@"user_name":strUsername,
                                                                         @"index":[NSNumber numberWithInteger:index]}
@@ -227,8 +278,7 @@
                                                                   [UserManager sharedInstance].currentUser = user;
                                                                   [self reloadCarfInfo];
                                                               } failure:^(NSError* error){
-                                                                  UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"User Not Found" message:@"Related user with this account is not found. Please try again later or contact our administrator." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                                                  [alert show];
+                                                                  [self showAlertWithTitle:@"Error" message:@"Cannot change default card at this moment. Please try again."];
                                                               }];
     }
 }

@@ -24,9 +24,10 @@
 		C10736DB1FA1AA8900646ACE /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736DA1FA1AA8900646ACE /* UserManager.m */; };
 		C10736DF1FA1F71A00646ACE /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736DE1FA1F71A00646ACE /* PaymentManager.m */; };
 		C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E11FA21E1E00646ACE /* PaymentViewController.m */; };
-		C10736E61FA2D5A800646ACE /* DummyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E51FA2D5A800646ACE /* DummyTableViewController.m */; };
 		C10736E91FA2DADA00646ACE /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E81FA2DADA00646ACE /* TransactionListViewController.m */; };
 		C10736EC1FA320D400646ACE /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */; };
+		C1481A471FA598D30044FAA3 /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1481A461FA598D30044FAA3 /* DialogViewController.m */; };
+		C1481A4A1FA59A910044FAA3 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1481A491FA59A910044FAA3 /* ColorManager.m */; };
 		C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B741FA06FBD00EA873F /* AppDelegate.m */; };
 		C1B29B781FA06FBD00EA873F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B771FA06FBD00EA873F /* MainViewController.m */; };
 		C1B29B7B1FA06FBD00EA873F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B791FA06FBD00EA873F /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */; };
 		C1B29B831FA06FBD00EA873F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B821FA06FBD00EA873F /* main.m */; };
 		C1B29B8D1FA06FBD00EA873F /* MPQRPaymentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */; };
+		C1D5BC8F1FA6BA4A0050CE45 /* PinDialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC8E1FA6BA4A0050CE45 /* PinDialogViewController.m */; };
+		C1D5BC921FA6E2CF0050CE45 /* ReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC911FA6E2CF0050CE45 /* ReceiptViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,12 +85,14 @@
 		C10736DE1FA1F71A00646ACE /* PaymentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		C10736E01FA21E1E00646ACE /* PaymentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		C10736E11FA21E1E00646ACE /* PaymentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
-		C10736E41FA2D5A800646ACE /* DummyTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyTableViewController.h; sourceTree = "<group>"; };
-		C10736E51FA2D5A800646ACE /* DummyTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyTableViewController.m; sourceTree = "<group>"; };
 		C10736E71FA2DADA00646ACE /* TransactionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionListViewController.h; sourceTree = "<group>"; };
 		C10736E81FA2DADA00646ACE /* TransactionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
 		C10736EA1FA320D400646ACE /* TransactionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
 		C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
+		C1481A451FA598D30044FAA3 /* DialogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
+		C1481A461FA598D30044FAA3 /* DialogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
+		C1481A481FA59A910044FAA3 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
+		C1481A491FA59A910044FAA3 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		C1B29B701FA06FBD00EA873F /* MPQRPayment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPQRPayment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B29B731FA06FBD00EA873F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C1B29B741FA06FBD00EA873F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +106,10 @@
 		C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MPQRPaymentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRPaymentTests.m; sourceTree = "<group>"; };
 		C1B29B8E1FA06FBD00EA873F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1D5BC8D1FA6BA4A0050CE45 /* PinDialogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinDialogViewController.h; sourceTree = "<group>"; };
+		C1D5BC8E1FA6BA4A0050CE45 /* PinDialogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PinDialogViewController.m; sourceTree = "<group>"; };
+		C1D5BC901FA6E2CF0050CE45 /* ReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiptViewController.h; sourceTree = "<group>"; };
+		C1D5BC911FA6E2CF0050CE45 /* ReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiptViewController.m; sourceTree = "<group>"; };
 		DB0280776098EA1A7741FE41 /* Pods_MPQRPaymentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MPQRPaymentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +149,12 @@
 			children = (
 				C10736B31FA08D7F00646ACE /* CurrencyEnum.h */,
 				C10736B41FA08D7F00646ACE /* CurrencyEnum.m */,
+				C1481A451FA598D30044FAA3 /* DialogViewController.h */,
+				C1481A461FA598D30044FAA3 /* DialogViewController.m */,
+				C1D5BC8D1FA6BA4A0050CE45 /* PinDialogViewController.h */,
+				C1D5BC8E1FA6BA4A0050CE45 /* PinDialogViewController.m */,
+				C1481A481FA59A910044FAA3 /* ColorManager.h */,
+				C1481A491FA59A910044FAA3 /* ColorManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +215,8 @@
 				C10736DE1FA1F71A00646ACE /* PaymentManager.m */,
 				C10736E01FA21E1E00646ACE /* PaymentViewController.h */,
 				C10736E11FA21E1E00646ACE /* PaymentViewController.m */,
+				C1D5BC901FA6E2CF0050CE45 /* ReceiptViewController.h */,
+				C1D5BC911FA6E2CF0050CE45 /* ReceiptViewController.m */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -207,8 +224,6 @@
 		C10736E31FA2D57100646ACE /* TransactionHistory */ = {
 			isa = PBXGroup;
 			children = (
-				C10736E41FA2D5A800646ACE /* DummyTableViewController.h */,
-				C10736E51FA2D5A800646ACE /* DummyTableViewController.m */,
 				C10736E71FA2DADA00646ACE /* TransactionListViewController.h */,
 				C10736E81FA2DADA00646ACE /* TransactionListViewController.m */,
 				C10736EA1FA320D400646ACE /* TransactionDetailViewController.h */,
@@ -515,16 +530,18 @@
 			files = (
 				C10736C71FA0D50200646ACE /* MPQRServer.m in Sources */,
 				C1B29B781FA06FBD00EA873F /* MainViewController.m in Sources */,
-				C10736E61FA2D5A800646ACE /* DummyTableViewController.m in Sources */,
+				C1481A4A1FA59A910044FAA3 /* ColorManager.m in Sources */,
 				C10736DB1FA1AA8900646ACE /* UserManager.m in Sources */,
 				C10736BF1FA0CD6500646ACE /* MPQRService.m in Sources */,
 				C10736BB1FA09B9000646ACE /* User.m in Sources */,
 				C10736D41FA1798500646ACE /* LoginViewController.m in Sources */,
 				C10736B51FA08FC100646ACE /* CurrencyEnum.m in Sources */,
 				C10736D71FA17C8200646ACE /* LoginManager.m in Sources */,
+				C1D5BC8F1FA6BA4A0050CE45 /* PinDialogViewController.m in Sources */,
 				C10736C31FA0CF7D00646ACE /* LoginResponse.m in Sources */,
 				C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */,
 				C1B29B831FA06FBD00EA873F /* main.m in Sources */,
+				C1D5BC921FA6E2CF0050CE45 /* ReceiptViewController.m in Sources */,
 				C10736DF1FA1F71A00646ACE /* PaymentManager.m in Sources */,
 				C10736EC1FA320D400646ACE /* TransactionDetailViewController.m in Sources */,
 				C10736CD1FA1508B00646ACE /* Merchant.m in Sources */,
@@ -533,6 +550,7 @@
 				C10736CA1FA14E8D00646ACE /* Receipt.m in Sources */,
 				C10736D01FA1753100646ACE /* PaymentData.m in Sources */,
 				C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */,
+				C1481A471FA598D30044FAA3 /* DialogViewController.m in Sources */,
 				C10736B81FA093E500646ACE /* PaymentInstrument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,12 +702,16 @@
 			baseConfigurationReference = A8D394D60302AD498BA79033 /* Pods-MPQRPayment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FARWN7FEXX;
+				DEVELOPMENT_TEAM = 9T73B6L4GQ;
 				INFOPLIST_FILE = MPQRPayment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.iOSMPQRPayment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				USE_HEADERMAP = NO;
@@ -701,12 +723,16 @@
 			baseConfigurationReference = 3E1DBE0D57F0A70FFCFA335C /* Pods-MPQRPayment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FARWN7FEXX;
+				DEVELOPMENT_TEAM = 9T73B6L4GQ;
 				INFOPLIST_FILE = MPQRPayment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.ios.MPQRPayment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mastercard.iOSMPQRPayment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				USE_HEADERMAP = NO;
