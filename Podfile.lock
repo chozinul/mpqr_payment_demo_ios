@@ -1,4 +1,5 @@
 PODS:
+  - DLRadioButton (1.4.11)
   - FSPagerView (0.7.1)
   - MasterpassQRCoreSDK (2.0.2)
   - MasterpassQRScanSDK (2.0.0)
@@ -7,6 +8,7 @@ PODS:
   - Realm/Headers (3.0.1)
 
 DEPENDENCIES:
+  - DLRadioButton (~> 1.4)
   - FSPagerView
   - MasterpassQRCoreSDK
   - MasterpassQRScanSDK
@@ -14,11 +16,12 @@ DEPENDENCIES:
   - Realm/Headers
 
 SPEC CHECKSUMS:
+  DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   MasterpassQRCoreSDK: 4d8c930f7d8c65feb812581d1884d937aa19abb5
   MasterpassQRScanSDK: 00f98d5a5c6f407328b49b972cd73580efe299fb
   Realm: ba6144c74f835f7497791f6599d63a7755377b83
 
-PODFILE CHECKSUM: 9582624bccbc6e3d255c1d9a8a2ba26fc9512ee7
+PODFILE CHECKSUM: d89dbe63fc1f226e9c4df20cdd7dc2c64dbe4723
 
 COCOAPODS: 1.3.1

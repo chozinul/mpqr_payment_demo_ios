@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _pin = @"";
     // Do any additional setup after loading the view.
 }
 
@@ -71,7 +72,7 @@
     [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lblBody]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lblBody)]];
     [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lblTitle][lblBody(20)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lblBody, lblTitle)]];
     
-    //add password txtfield
+    //add pin txtfield
     UITextField* pinTextField = [UITextField new];
     pinTextField.translatesAutoresizingMaskIntoConstraints = NO;
     pinTextField.keyboardType = UIKeyboardTypeNumberPad;

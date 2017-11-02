@@ -10,14 +10,14 @@
 
 @implementation PaymentInstrument
 
-- (NSString*) getFormattedAmount{
-    NSNumberFormatter * formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
-    [formatter setLocale:[NSLocale currentLocale]];
-    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:self.balance]];
-    return newString;
-}
+//- (NSString*) getFormattedAmount{
+//    NSNumberFormatter * formatter = [NSNumberFormatter new];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
+//    [formatter setLocale:[NSLocale currentLocale]];
+//    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:self.balance]];
+//    return newString;
+//}
 
 - (BOOL) isEqual:(id _Nullable)object
 {

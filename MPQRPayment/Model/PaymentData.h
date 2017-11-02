@@ -10,11 +10,6 @@
 #import "CurrencyEnum.h"
 
 @import MasterpassQRCoreSDK;
-//typedef NS_ENUM(NSInteger, TipInfo) {
-//    PROMPTED_TO_ENTER_TIP,
-//    FLAT_CONVENIENCE_FEE,
-//    PERCENTAGE_CONVENIENCE_FEE
-//};
 
 @class Merchant;
 @interface PaymentData : NSObject

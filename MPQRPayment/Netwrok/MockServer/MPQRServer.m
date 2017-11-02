@@ -13,6 +13,11 @@
 #include <stdlib.h>
 #import "LoginResponse.h"
 #import "PaymentInstrument.h"
+#import "LoginRequest.h"
+#import "GetUserInfoRequest.h"
+#import "ChangeDefaultCardRequest.h"
+#import "TransactionsRequest.h"
+#import "MakePaymentRequest.h"
 
 @implementation MPQRServer
 
@@ -33,11 +38,11 @@
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure
 {
     if ([URLString isEqualToString:@"/login"]) {
-        
+        LoginRequest* loginRequest = (LoginRequest*) parameters;
         //isvalidcredential
-        NSString* strUserName = [parameters objectForKey:@"user_name"];
-        NSString* strPassword = [parameters objectForKey:@"password"];
-        if(![self isValidCredential:strUserName password:strPassword])
+        NSString* strAccesCode = loginRequest.accessCode;
+        NSString* strPin = loginRequest.pin;
+        if(![self isValidCredential:strAccesCode pin:strPin])
         {
             NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Invalid credential"}];
             failure(nil, error);
@@ -45,32 +50,33 @@
         }
         
         LoginResponse* loginResponse = [LoginResponse new];
-        loginResponse.user = strUserName;
+        loginResponse.accessCode = strAccesCode;
         loginResponse.token = @"asdlfj09u09uewjffij";
         success(nil, loginResponse);
         
         //create user
-        [self createNewUserWithUserName:strUserName];
+        [self createNewUserWithUserName:strAccesCode];
     }
     
     if ([URLString isEqualToString:@"/getuserinfo"]) {
         
-        //isvalidcredential
-        NSString* strUserName = [parameters objectForKey:@"user_name"];
-        if(!strUserName)
+        GetUserInfoRequest* params = (GetUserInfoRequest*) parameters;
+        
+        NSString* strAccessCode = params.accessCode;
+        if(!strAccessCode)
         {
-            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Username is null"}];
+            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Access code is null"}];
             failure(nil, error);
             return nil;
         }
         
         RLMRealm *realm = [RLMRealm defaultRealm];
-        RLMResults<User*> *users = [User objectsInRealm:realm where:[NSString stringWithFormat:@"firstName = '%@'", strUserName]];
+        RLMResults<User*> *users = [User objectsInRealm:realm where:[NSString stringWithFormat:@"firstName = '%@'", strAccessCode]];
         if (users.count>0) {
             success(nil, [users objectAtIndex:0]);
         }else
         {
-            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Username is not found"}];
+            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Access code is not found"}];
             failure(nil, error);
             return nil;
         }
@@ -79,19 +85,19 @@
     
     
     if ([URLString isEqualToString:@"/changedefaultcard"]) {
-        
-        //isvalidcredential
-        NSString* strUserName = [parameters objectForKey:@"user_name"];
-        int index = [[parameters objectForKey:@"index"] intValue];
-        if(!strUserName)
+
+        ChangeDefaultCardRequest* params = (ChangeDefaultCardRequest*) parameters;
+        NSString* strAccessCode = params.accessCode;
+        int index = params.index;
+        if(!strAccessCode)
         {
-            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Username is null"}];
+            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Access code is null"}];
             failure(nil, error);
             return nil;
         }
         
         RLMRealm *realm = [RLMRealm defaultRealm];
-        RLMResults<User*> *users = [User objectsInRealm:realm where:[NSString stringWithFormat:@"firstName = '%@'", strUserName]];
+        RLMResults<User*> *users = [User objectsInRealm:realm where:[NSString stringWithFormat:@"firstName = '%@'", strAccessCode]];
         if (users.count>0) {
             User* user = [users objectAtIndex:0];
             if (index < user.paymentInstruments.count) {
@@ -110,18 +116,20 @@
             success(nil, user);
         }else
         {
-            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Username is not found"}];
+            NSError* error = [NSError errorWithDomain:@"Network Error" code:500 userInfo:@{@"description":@"Access code is not found"}];
             failure(nil, error);
             return nil;
         }
     }
     
     if ([URLString isEqualToString:@"/makepayment"]) {
-        long senderCardID = [[parameters objectForKey:@"sender_card_id"] integerValue];
-        long senderID = [[parameters objectForKey:@"sender_id"] integerValue];
-        double transactionAmount = [[parameters objectForKey:@"transaction_amount"] doubleValue];
-        double tip = [[parameters objectForKey:@"tip"] doubleValue];
-        double total = transactionAmount;
+        MakePaymentRequest* request = (MakePaymentRequest*) parameters;
+        
+        long senderCardID = request.senderCardID;
+        long senderID = request.senderID;
+        double transactionAmountTotal = request.transactionAmountTotal;
+        double tipAmount = request.tipAmount;
+        double total = transactionAmountTotal;
         RLMRealm *realm = [RLMRealm defaultRealm];
         RLMResults<PaymentInstrument*> *instruments = [PaymentInstrument objectsInRealm:realm where:[NSString stringWithFormat:@"id = %ld", senderCardID]];
         
@@ -140,11 +148,11 @@
             trans.referenceId = [NSString stringWithFormat:@"%u",arc4random_uniform(INT_MAX)];
             trans.invoiceNumber = [NSString stringWithFormat:@"%u",arc4random_uniform(INT_MAX)];
             trans.maskedIdentifier = instrument.maskedIdentifier;
-            trans.transactionAmount = transactionAmount;
-            trans.tipAmount = tip;
-            trans.currencyNumericCode = [parameters objectForKey:@"currency"];
+            trans.transactionAmount = transactionAmountTotal - tipAmount;
+            trans.tipAmount = tipAmount;
+            trans.currencyNumericCode = request.currency;
             trans.transactionDate = [NSDate new];
-            trans.merchantName = [parameters objectForKey:@"receiver_name"];
+            trans.merchantName = request.receiverName;
             trans.instrumentIdentifier = instrument.id;
             [realm beginWriteTransaction];
             [user.transactions addObject:trans];
@@ -161,7 +169,9 @@
     }
     
     if ([URLString isEqualToString:@"/transactions"]) {
-        long cardId = [[parameters objectForKey:@"sender_card_identifier"] integerValue];
+        TransactionsRequest* request = (TransactionsRequest*) parameters;
+        
+        long cardId = request.senderCardIdentifier;
         
         RLMRealm *realm = [RLMRealm defaultRealm];
         RLMResults<Transaction*> *list = [Transaction objectsInRealm:realm where:[NSString stringWithFormat:@"instrumentIdentifier = %ld", cardId]];
@@ -174,6 +184,11 @@
             failure(nil, error);
             return nil;
         }
+    }
+    
+    
+    if ([URLString isEqualToString:@"/logout"]) {
+
     }
     
     return nil;
@@ -195,14 +210,14 @@
     }
 }
 #pragma mark - Login
-- (BOOL) isValidCredential:(NSString*) strUserName password:(NSString*) strPassword
+- (BOOL) isValidCredential:(NSString*) accessCode pin:(NSString*) pin
 {
     
-    if (![strPassword isEqualToString:@"123456"]) {
+    if (![pin isEqualToString:@"123456"]) {
         return false;
     }
     
-    if (!strUserName) {
+    if (!accessCode) {
         return false;
     }
     return true;

@@ -13,7 +13,7 @@
 - (double) getTipAmount
 {
     if (_tipType == percentageConvenienceFee) {
-        return _transactionAmount*_tip/1000;
+        return _transactionAmount*_tip/100;
     }else
     {
         return _tip;

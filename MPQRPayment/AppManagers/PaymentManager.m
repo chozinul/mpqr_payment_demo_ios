@@ -30,13 +30,6 @@
 - (void) parseScannedCode:(NSString*_Nullable) code withCompletionBlock:(nullable void (^)(PaymentData* _Nullable paymentData, NSError* _Nullable error)) completionBlock;
 {
     PushPaymentData *pushPaymentData;
-//    NSString* (^handleError)(MPQRError *) = ^NSString* (MPQRError* error) {
-//        if (error.domain == MPQRErrorDomain) {
-//            return [NSString stringWithFormat:@"Error: %@", [error getString]];
-//        }
-//        return [NSString stringWithFormat:@"Unkown error occured %@", error];
-//    };
-    
     MPQRError *error;
     pushPaymentData = [MPQRParser parse:code error:&error];
     

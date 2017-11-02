@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@class Transaction;
-@class PaymentData;
-@interface ReceiptViewController : UIViewController
+@class Receipt;
+@interface ReceiptViewController : BaseViewController
 
-@property Transaction* transaction;
-@property PaymentData* paymentData;
+@property Receipt* receipt;
+
 @end

@@ -16,5 +16,7 @@
 - (UIColor* _Nonnull) lineDevider;
 - (UIColor* _Nonnull) textColor;
 - (UIColor* _Nonnull) blackColorHeader;
+- (UIColor* _Nonnull) radioButtonSelectedColor;
+- (UIColor* _Nonnull) radioButtonUnselectedColor;
 
 @end

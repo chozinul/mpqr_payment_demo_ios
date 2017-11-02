@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BaseViewController.h"
 
 @class Transaction;
 @interface TransactionDetailViewCell : UITableViewCell
 
 @end
 
-@interface TransactionDetailViewController : UIViewController
+@interface TransactionDetailViewController : BaseViewController
 
 @property Transaction* transaction;
 

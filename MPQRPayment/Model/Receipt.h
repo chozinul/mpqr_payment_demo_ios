@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class Transaction;
+@class PaymentData;
+
 @interface Receipt : NSObject
 
-@property NSString* merchantName;
-@property NSString* merchantCity;
+@property NSString* _Nullable merchantName;
+@property NSString* _Nullable merchantCity;
 @property double transactionAmount;
 @property double tipAmount;
 @property double totalAmount;
-@property NSString* currencyCode;
-@property NSString* maskedPan;
-@property NSString* methodType;
+@property NSString* _Nullable currencyCode;
+@property NSString* _Nullable maskedPan;
+@property NSString* _Nullable methodType;
+
+- (id _Nonnull) initWithTransaction:(Transaction* _Nonnull) transaction paymentData:(PaymentData* _Nonnull) paymentData;
 
 @end

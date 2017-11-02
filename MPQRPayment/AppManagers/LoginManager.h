@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoginResponse.h"
 
+
+@class LoginResponse;
 @interface LoginManager : NSObject
 
 + (instancetype _Nonnull )sharedInstance;
 
-@property  LoginResponse* _Nullable loginInfo;
+@property (nonatomic, retain)LoginResponse* _Nullable loginInfo;
+@property (readonly) NSString* _Nonnull lastUser;
 
 @end

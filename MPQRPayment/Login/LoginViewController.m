@@ -12,6 +12,7 @@
 #import "User.h"
 #import "PaymentInstrument.h"
 #import "DialogViewController.h"
+#import "LoginRequest.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accessCode;
@@ -39,6 +40,15 @@
     f.origin.x = 0;
     f.size.width = self.view.bounds.size.width;
     self.section4.frame = f;
+    
+    [self setInitialAccesscode];
+}
+
+- (void) setInitialAccesscode
+{
+    if (_accessCode.text.length == 0) {
+        _accessCode.text = [LoginManager sharedInstance].lastUser;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -62,10 +72,10 @@
 }
 */
 - (IBAction)signIn:(id)sender {
-    NSString* strUserName = _accessCode.text;
+    NSString* strAccessCode = _accessCode.text;
     NSString* strPin = _pin.text;
     
-    if (![self isValidUsername:strUserName password:strPin]) {
+    if (![self isValidAccessCode:strAccessCode pin:strPin]) {
         DialogViewController* dialogVC = [DialogViewController new];
         dialogVC.dialogMessage = @"Invalid access code or pin, please enter a valid access code and 6 digit pin.";
         dialogVC.positiveResponse = @"OK";
@@ -76,7 +86,10 @@
         return;
     }
     
-    [[MPQRService sharedInstance] loginWithParameters:@{@"user_name":strUserName, @"password":strPin}
+    
+    LoginRequest* lRequest = [[LoginRequest alloc] initWithAccessCode:strAccessCode pin:strPin];
+    
+    [[MPQRService sharedInstance] loginWithParameters:lRequest
                                               success:^(LoginResponse* lResponse){
                                                   [LoginManager sharedInstance].loginInfo = lResponse;
                                                   [self dismissViewControllerAnimated:YES completion:nil];
@@ -92,15 +105,12 @@
     
 }
 
-- (BOOL) isValidUsername:(NSString*) username password:(NSString*) password
+- (BOOL) isValidAccessCode:(NSString*) accessCode pin:(NSString*) pin
 {
-    if (!username) {
+    if (accessCode.length == 0) {
         return false;
     }
-    if (!password) {
-        return false;
-    }
-    if (password.length != 6) {
+    if (pin.length != 6) {
         return false;
     }
     return true;

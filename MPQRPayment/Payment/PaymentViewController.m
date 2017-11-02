@@ -15,6 +15,14 @@
 #import "PinDialogViewController.h"
 #import "LoginManager.h"
 #import "ReceiptViewController.h"
+#import "CardChooserViewController.h"
+#import "UserManager.h"
+#import "PaymentInstrument.h"
+#import "Receipt.h"
+#import "LoginRequest.h"
+#import "LoginResponse.h"
+#import "ChangeDefaultCardRequest.h"
+#import "MakePaymentRequest.h"
 
 @import MasterpassQRCoreSDK;
 
@@ -50,11 +58,14 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     _merchantName.text = _paymentData.merchant.name;
     _merchantCity.text = _paymentData.merchant.city;
     _currency.text = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_paymentData.currencyNumericCode]];
     _currencySecond.text = _currency.text;
+    PaymentInstrument* instrument = [[UserManager sharedInstance] getuserCardWithID:_paymentData.cardId];
+    _maskedIdentifier.text = instrument.maskedIdentifier;
     
     //amount of money
     [self setInitialAmount];
@@ -96,7 +107,7 @@
     f.size.width = self.view.bounds.size.width;
     self.section4.frame = f;
     
-    [self calculateTotalAmount];
+    [self updateUITotalAmount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -107,7 +118,28 @@
 
 #pragma mark - Actions
 - (IBAction)changeCard:(id)sender {
-    
+    CardChooserViewController* dvg = [CardChooserViewController new];
+    dvg.dialogHeight = 400;
+    dvg.positiveResponse = @"Select";
+    dvg.negativeResponse = @"Cancel";
+    [dvg showDialogWithContex:self.navigationController
+                 withYesBlock:^(DialogViewController* dialog){
+                     CardChooserViewController* cardChooser = (CardChooserViewController*) dialog;
+                     int index = (int)cardChooser.selectedIndex;
+                     NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
+                     ChangeDefaultCardRequest* request = [[ChangeDefaultCardRequest alloc] initWithAccessCode:accessCode index:index];
+                     [[MPQRService sharedInstance] changeDefaultCardWithParameters:request
+                                                                           success:^(User* user){
+                                                                               [UserManager sharedInstance].currentUser = user;
+                                                                               PaymentInstrument* instrument = [[UserManager sharedInstance] getDefaultCard];
+                                                                               _paymentData.cardId = instrument.id;
+                                                                               _maskedIdentifier.text = instrument.maskedIdentifier;
+                                                                           } failure:^(NSError* error){
+                                                                               [self showAlertWithTitle:@"Error" message:@"Cannot change default card at this moment. Please try again."];
+                                                                           }];
+                 } withNoBlock:^(DialogViewController* dialog){
+                     
+                 }];
 }
 - (IBAction)pay:(id)sender {
     PinDialogViewController* dvg = [PinDialogViewController new];
@@ -119,45 +151,52 @@
                  withYesBlock:^(DialogViewController* dialog){
                      
                      PinDialogViewController* pinDialog = (PinDialogViewController*) dialog;
-                     NSString* strUserName = [LoginManager sharedInstance].loginInfo.user;
+                     NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
                      NSString* strPin = pinDialog.pin;
                      
-                     [[MPQRService sharedInstance] loginWithParameters:@{@"user_name":strUserName, @"password":strPin}
+                     LoginRequest* lRequest = [[LoginRequest alloc] initWithAccessCode:strAccessCode pin:strPin];
+                     
+                     [[MPQRService sharedInstance] loginWithParameters:lRequest
                                                                success:^(LoginResponse* lResponse){
                                                                    [LoginManager sharedInstance].loginInfo = lResponse;
-                                                                   NSString* strAmount = _totalAmount.text;
-                                                                   double amount = [strAmount doubleValue];
                                                                    NSNumber* senderId = [NSNumber numberWithInteger:_paymentData.userId];
                                                                    NSNumber* cardID = [NSNumber numberWithInteger:_paymentData.cardId];
                                                                    NSString* mastercardID = _paymentData.merchant.identifierMastercard04;
                                                                    NSString* merchantName = _paymentData.merchant.name;
                                                                    NSString* currency = _paymentData.currencyNumericCode;
-                                                                   NSNumber* transactionAmount = [NSNumber numberWithDouble:amount];
-                                                                   NSNumber* tip = [NSNumber numberWithDouble:_flatTip.text.doubleValue];
+                                                                   NSNumber* transactionAmountTotal = [NSNumber numberWithDouble:[self calculateTotalAmount]];
+                                                                   NSNumber* tip = [NSNumber numberWithDouble:[self calculateTipAmount]];
                                                                    NSString* terminalNumber = _paymentData.merchant.terminalNumber;
-                                                                   NSDictionary* parameter = @{@"sender_id":senderId,
-                                                                                               @"sender_card_id":cardID,
-                                                                                               @"receiver_card_number":mastercardID?mastercardID:@"",
-                                                                                               @"receiver_name":merchantName?merchantName:@"",
-                                                                                               @"currency": currency?currency:@"",
-                                                                                               @"transaction_amount": transactionAmount,
-                                                                                               @"tip":tip,
-                                                                                               @"terminal_number": terminalNumber?terminalNumber:@""
-                                                                                               };
+//                                                                   NSDictionary* parameter = @{@"sender_id":senderId,
+//                                                                                               @"sender_card_id":cardID,
+//                                                                                               @"receiver_card_number":mastercardID?mastercardID:@"",
+//                                                                                               @"receiver_name":merchantName?merchantName:@"",
+//                                                                                               @"currency": currency?currency:@"",
+//                                                                                               @"transaction_amount_total": transactionAmount,
+//                                                                                               @"tip":tip,
+//                                                                                               @"terminal_number": terminalNumber?terminalNumber:@""
+//                                                                                               };
                                                                    
-                                                                   [[MPQRService sharedInstance] makePaymentWithParameters:parameter
+                                                                   MakePaymentRequest* request = [[MakePaymentRequest alloc]
+                                                                                                  initWithAccesCode:strAccessCode
+                                                                                                  senderID:senderId.integerValue
+                                                                                                  senderCardID:cardID.integerValue
+                                                                                                  receiverCardNumber:mastercardID?mastercardID:@""
+                                                                                                  receiverName:merchantName?merchantName:@""
+                                                                                                  currency:currency?currency:@""
+                                                                                                  transactionAmountTotal:transactionAmountTotal.doubleValue
+                                                                                                  tipAmount:tip.doubleValue
+                                                                                                  terminalNumber:terminalNumber?terminalNumber:@""];
+                                                                   [[MPQRService sharedInstance] makePaymentWithParameters:request
                                                                                                                    success:^(Transaction* transaction){
                                                                                                                            ReceiptViewController* receiptVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]
                                                                                                                                                                instantiateViewControllerWithIdentifier:@"ReceiptViewController"];
-                                                                                                                           receiptVC.transaction = transaction;
-                                                                                                                           receiptVC.paymentData = _paymentData;
+                                                                                                                           receiptVC.receipt = [[Receipt alloc] initWithTransaction:transaction paymentData:_paymentData];
                                                                                                                            [self.navigationController pushViewController:receiptVC animated:YES];
                                                                                                                    } failure:^(NSError* error){
                                                                                                                        
                                                                                                                    }];
                                                                } failure:^(NSError* error){
-//                                                                   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Verification Failed" message:@"Please enter valid 6 digit pin." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                                                                   [alert show];
                                                                    [self showAlertWithTitle:@"Verifiecation failed" message:@"Please enter valid 6 digit pin."];
                                                                }];
                  } withNoBlock:^(DialogViewController* dialog){
@@ -197,9 +236,10 @@
 
 - (void)textFieldDidChange:(UITextField *)textField
 {
-    [self calculateTotalAmount];
+    [self updateUITotalAmount];
 }
 
+#pragma mark - Tips and Amount Calculation
 - (void) setInitialAmount
 {
 
@@ -223,6 +263,7 @@
             break;
         case promptedToEnterTip:
             _flatTip.text = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
+            _flatTip.enabled = true;
             break;
         default:
             _tipSection.hidden = TRUE;
@@ -231,24 +272,57 @@
     }
 }
 
-- (void) calculateTotalAmount
+- (void) updateUITotalAmount
 {
+    _totalAmount.text = [NSString stringWithFormat:@"%.2lf", [self calculateTotalAmount]];
     switch (_paymentData.tipType) {
         case percentageConvenienceFee:
         case flatConvenienceFee:
-            _totalAmount.text = [NSString stringWithFormat:@"%.2lf", _amount.text.doubleValue + [_paymentData getTipAmount]];
-            break;
         case promptedToEnterTip:
-            _totalAmount.text = [NSString stringWithFormat:@"%f", _amount.text.doubleValue + _flatTip.text.doubleValue];
             break;
         default:
-            _totalAmount.text = [NSString stringWithFormat:@"%.2lf", _amount.text.doubleValue];
             _tipSection.hidden = TRUE;
             _heightOfSecondSection.constant = 98;
             break;
     }
 }
 
+
+- (double) calculateTotalAmount
+{
+    double totalAmount = 0;
+    switch (_paymentData.tipType) {
+        case percentageConvenienceFee:
+        case flatConvenienceFee:
+            totalAmount = _amount.text.doubleValue + [_paymentData getTipAmount];
+            break;
+        case promptedToEnterTip:
+            totalAmount = _amount.text.doubleValue + _flatTip.text.doubleValue;
+            break;
+        default:
+            totalAmount = _amount.text.doubleValue;
+            break;
+    }
+    return totalAmount;
+}
+
+
+- (double) calculateTipAmount
+{
+    double tipAmount = 0;
+    switch (_paymentData.tipType) {
+        case percentageConvenienceFee:
+        case flatConvenienceFee:
+            tipAmount = [_paymentData getTipAmount];
+            break;
+        case promptedToEnterTip:
+            tipAmount = _flatTip.text.doubleValue;
+            break;
+        default:
+            break;
+    }
+    return tipAmount;
+}
 
 #pragma mark - keyboard movements
 - (void)keyboardWillShow:(NSNotification *)notification
@@ -290,88 +364,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-*/
-
-#pragma mark - Logic
-/*
-@Override
-public void showProcessingPaymentLoading() {
-    KeyboardUtils.hideKeyboard(this);
-    
-    hideProcessingPaymentLoading();
-    
-    progressDialog = new ProgressDialog(this);
-    progressDialog.setMessage(getString(R.string.processing_payment_message));
-    progressDialog.setCancelable(false);
-    
-    progressDialog.show();
-}
-
-@Override
-public void hideProcessingPaymentLoading() {
-    if (progressDialog != null) {
-        progressDialog.dismiss();
-    }
-}
-
-@Override
-public void showReceipt(Receipt receipt) {
-    Intent intent = ReceiptActivity.newIntent(this, receipt);
-    startActivity(intent);
-    
-    finish();
-}
-
-@Override
-public void showPaymentFailedError() {
-    DialogUtils.showDialog(this, R.string.error, R.string.payment_failed);
-}
-
-@Override
-public void showInvalidPinError() {
-    DialogUtils.showDialog(this, R.string.error, R.string.invalid_pin);
-}
-
-@Override
-public void showNetworkError() {
-    DialogUtils.showDialog(this, R.string.error, R.string.unexpected_error);
-}
-
-@Override
-public void showInvalidDataError() {
-    DialogUtils.customAlertDialogBuilder(this, R.string.invalid_payment_data).setOnDismissListener(new DialogInterface.OnDismissListener() {
-        @Override
-        public void onDismiss(DialogInterface dialog) {
-            finish();
-        }
-    });
-}
-
-@Override
-public void showInsufficientBalanceError() {
-    DialogUtils.showDialog(this, R.string.error, R.string.insufficient_balance_error);
-}
-
-@Override
-public void showTipChangeNotAllowedError() {
-    DialogUtils.showDialog(this, R.string.error, R.string.error_tip_change_not_allowed);
-}
-
-@Override
-public void showCancelDialog() {
-    DialogUtils.customAlertDialogBuilder(this, R.string.ask_cancel_confirmation).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-        }
-    }).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            presenter.cancelFlow();
-        }
-    }).show();
 }
 */
 

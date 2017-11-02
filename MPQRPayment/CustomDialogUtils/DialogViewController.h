@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BaseViewController.h"
 
 @class DialogViewController;
 typedef void (^DialogViewControllerCompletionBlock)(DialogViewController* _Nonnull dialogVC);
 
-@interface DialogViewController : UIViewController
+@interface DialogViewController : BaseViewController
 
 @property  NSString* _Nullable  dialogMessage;
 @property  NSString* _Nullable  positiveResponse;
 @property  NSString* _Nullable  negativeResponse;
-
+@property  int dialogHeight;
 
 - (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success withNoBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success;
 

@@ -36,6 +36,22 @@
                                  }];
 }
 
+
+- (void) logoutWithParameters:(nullable id)parameters
+                      success:(nullable void (^)(id _Nullable responseObject))success
+                      failure:(nullable void (^)(NSError * _Nullable error))failure
+{
+    
+    [[MPQRServer sharedInstance] GET:@"/logout"
+                          parameters:parameters
+                             success:^(NSURLSessionDataTask* task, id response){
+                                 success(response);
+                             } failure:^(NSURLSessionDataTask* task, NSError* error){
+                                 failure(error);
+                             }];
+}
+
+
 - (void) getUserWithParameters:(nullable id)parameters
                      success:(nullable void (^)(User* _Nullable responseObject))success
                      failure:(nullable void (^)(NSError* _Nullable error))failure

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @class PaymentData;
-@interface PaymentViewController : UIViewController
+@interface PaymentViewController : BaseViewController
 
 @property PaymentData* paymentData;
 

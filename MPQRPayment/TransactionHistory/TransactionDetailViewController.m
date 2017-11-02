@@ -9,6 +9,7 @@
 #import "TransactionDetailViewController.h"
 #import "Transaction.h"
 #import "CurrencyEnum.h"
+#import "CurrencyFormatter.h"
 
 @interface TransactionDetailViewCell ()
 
@@ -36,8 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _lblTotal.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[self.transaction getFormattedAmount]];
-    _lblTip.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[self.transaction getFormattedAmountWithValue:self.transaction.tipAmount]];
+    _lblTotal.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:_transaction.transactionAmount + _transaction.tipAmount]];
+    _lblTip.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:self.transaction.tipAmount]];
     _lblDate.text = [self.transaction getFormattedTransactionDate];
     
     data = @[@{@"title":@"MERCHANT NAME",

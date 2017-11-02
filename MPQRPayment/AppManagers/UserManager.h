@@ -17,5 +17,6 @@
 
 - (int) getDefaultCardIndex;
 - (PaymentInstrument* _Nullable) getDefaultCard;
+- (PaymentInstrument* _Nullable) getuserCardWithID:(NSInteger) ID;
 
 @end

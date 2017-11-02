@@ -21,9 +21,6 @@
 @property NSDate* transactionDate;
 @property NSString* merchantName;
 
-- (double) getTotal;
 - (CurrencyEnum) getCurrencyCode;
-- (NSString*) getFormattedAmount;
-- (NSString*) getFormattedAmountWithValue:(double) value;
 - (NSString*) getFormattedTransactionDate;
 @end

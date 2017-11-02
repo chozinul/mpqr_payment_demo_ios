@@ -7,10 +7,9 @@
 //
 
 #import "ReceiptViewController.h"
-#import "Transaction.h"
-#import "PaymentData.h"
 #import "Merchant.h"
-#import "CurrencyEnum.h"
+#import "CurrencyFormatter.h"
+#import "Receipt.h"
 
 @interface ReceiptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblTotal;
@@ -29,13 +28,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _lblTotal.text = [NSString stringWithFormat:@"%@ %@"
-                      ,[CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_transaction.currencyNumericCode]]
-                      ,[_transaction getFormattedAmount]];
-    _lblMerchant.text = _transaction.merchantName;
-    _lblCity.text = _paymentData.merchant.city;
-    _lblAmount.text = [_transaction getFormattedAmountWithValue:_transaction.transactionAmount];
-    _lblTips.text = [_transaction getFormattedAmountWithValue:_transaction.tipAmount];
-    _lblMaskedIdentifier.text = _transaction.maskedIdentifier;
+                      ,_receipt.currencyCode
+                      ,[CurrencyFormatter getFormattedAmountWithValue:_receipt.totalAmount]];
+
+    _lblMerchant.text = _receipt.merchantName;
+    _lblCity.text = _receipt.merchantCity;
+    _lblAmount.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.transactionAmount];
+    _lblTips.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.tipAmount];
+    _lblMaskedIdentifier.text = _receipt.maskedPan;
     
     
     self.navigationItem.hidesBackButton = TRUE;
@@ -53,16 +53,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)btnReturnPressed:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

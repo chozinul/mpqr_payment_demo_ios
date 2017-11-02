@@ -12,6 +12,10 @@
 #import "UserManager.h"
 #import "PaymentInstrument.h"
 #import "TransactionDetailViewController.h"
+#import "CurrencyFormatter.h"
+#import "TransactionsRequest.h"
+#import "LoginManager.h"
+#import "LoginResponse.h"
 
 @import Realm;
 
@@ -34,7 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblAcquirer;
 @property (weak, nonatomic) IBOutlet UILabel *lblMaskedIdentifier;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property RLMResults<Transaction*> * transactionList;
+@property NSArray<Transaction*> * transactionList;
 @end
 
 @implementation TransactionListViewController
@@ -48,11 +52,19 @@
     
     self.lblAcquirer.text = senderAcquiredName;
     self.lblMaskedIdentifier.text = senderMaskIdentified;
+    NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
     
-    [[MPQRService sharedInstance] getTransactionsParameters:@{@"sender_card_identifier":[NSNumber numberWithInteger:cardID]}
+    TransactionsRequest* request = [[TransactionsRequest alloc] initWithAccessCode:accessCode senderCardIdentifier:cardID];
+    [[MPQRService sharedInstance] getTransactionsParameters:request
                                                     success:^(RLMResults<Transaction*> *list){
                                                         
-                                                        self.transactionList = list;
+                                                        NSMutableArray* array = [NSMutableArray array];
+                                                        for(int i = 0; i < list.count; i++)
+                                                        {
+                                                            Transaction* transaction = [list objectAtIndex: list.count - i - 1];
+                                                            [array addObject:transaction];
+                                                        }
+                                                        self.transactionList = array;
                                                         [_tableView reloadData];
                                                         
                                                     } failure:^(NSError* error){
@@ -91,7 +103,7 @@
     TransactionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionViewCell" forIndexPath:indexPath];
     Transaction* trans = [_transactionList objectAtIndex:indexPath.row];
     cell.lblMerchant.text = trans.merchantName;
-    cell.lblMoney.text = [NSString stringWithFormat:@"%@", [trans getFormattedAmount]];
+    cell.lblMoney.text = [NSString stringWithFormat:@"%@", [CurrencyFormatter getFormattedAmountWithValue:trans.transactionAmount + trans.tipAmount]];
     
     cell.lblDate.text = [trans getFormattedTransactionDate];
     return cell;

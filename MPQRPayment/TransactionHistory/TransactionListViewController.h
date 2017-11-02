@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @interface TransactionViewCell : UITableViewCell
 
 @end
 
-@interface TransactionListViewController : UIViewController
+@interface TransactionListViewController : BaseViewController
 
 @end

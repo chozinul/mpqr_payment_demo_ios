@@ -10,31 +10,6 @@
 
 @implementation Transaction
 
-- (double) getTotal
-{
-    return self.transactionAmount + self.tipAmount;
-}
-
-- (NSString*) getFormattedAmount{
-    NSNumberFormatter * formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
-    [formatter setLocale:[NSLocale currentLocale]];
-    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:[self getTotal]]];
-    return newString;
-}
-
-
-- (NSString*) getFormattedAmountWithValue:(double) value{
-    NSNumberFormatter * formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
-    [formatter setLocale:[NSLocale currentLocale]];
-    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:value]];
-    return newString;
-}
-
-
 - (NSString*) getFormattedTransactionDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

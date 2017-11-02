@@ -17,9 +17,24 @@
 
 @implementation DialogViewController
 
+- (nonnull id) init
+{
+    return [self initWithDialogMessage:@"" positiveResponse:@"OK" negativeResponse:nil dialogHeight:200];
+}
+
+- (nonnull id) initWithDialogMessage:(NSString*) dialogMessage positiveResponse:(NSString*) positiveResponse negativeResponse:(NSString*) negativeResponse dialogHeight:(int) dialogHeight
+{
+    if ((self = [super init])) {
+        self.dialogMessage = dialogMessage;
+        self.positiveResponse = positiveResponse;
+        self.negativeResponse = negativeResponse;
+        self.dialogHeight = dialogHeight?dialogHeight:200;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     //add container
     self.view.backgroundColor = [ColorManager sharedInstance].semiTransparentBackground;
@@ -27,16 +42,9 @@
     container.backgroundColor = [UIColor clearColor];
     container.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:container];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[container(300)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[container(200)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
-    [self.view addConstraint:
-     [NSLayoutConstraint constraintWithItem:self.view
-                                  attribute:NSLayoutAttributeCenterX
-                                  relatedBy:0
-                                     toItem:container
-                                  attribute:NSLayoutAttributeCenterX
-                                 multiplier:1
-                                   constant:0]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[container]-30-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:[container(%d)]",_dialogHeight] options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
+
     [self.view addConstraint:
      [NSLayoutConstraint constraintWithItem:self.view
                                   attribute:NSLayoutAttributeCenterY
@@ -192,10 +200,10 @@
     [footerView addSubview:btnNo];
     
     if (self.positiveResponse) {
-        [footerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10)-[btnNo(75)]-25-[btnYes(50)]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnYes, btnNo)]];
+        [footerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10)-[btnNo(75)]-25-[btnYes(75)]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnYes, btnNo)]];
     }else
     {
-        [footerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10)-[btnYes(75)]-25-[btnNo(50)]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnYes, btnNo)]];
+        [footerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(>=10)-[btnYes(75)]-25-[btnNo(75)]-25-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btnYes, btnNo)]];
         
     }
     

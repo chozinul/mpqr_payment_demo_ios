@@ -19,6 +19,11 @@
 #import "PaymentViewController.h"
 #import "TransactionListViewController.h"
 #import "DialogViewController.h"
+#import "CardChooserViewController.h"
+#import "CurrencyFormatter.h"
+#import "GetUserInfoRequest.h"
+#import "LogoutRequest.h"
+#import "ChangeDefaultCardRequest.h"
 
 @import FSPagerView;
 @import MasterpassQRScanSDK;
@@ -53,13 +58,15 @@
     
     UIImage* logo = [UIImage imageNamed:@"masterpassqr_logo"];
     logoView = [[UIImageView alloc] initWithImage:logo];
-    
-    UIBarButtonItem* barBtnSetting = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_settings"]
-                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(btnSettingPressed)];
+//
+//    UIBarButtonItem* barBtnSetting = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_settings"]
+//                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(btnSettingPressed)];
     
     UIBarButtonItem* barBtnLogout = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_logout"]
                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(btnLogoutPressed)];
-    self.navigationItem.rightBarButtonItems = @[barBtnLogout, barBtnSetting];
+    self.navigationItem.rightBarButtonItems = @[barBtnLogout
+//                                                , barBtnSetting
+                                                ];
     
     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
@@ -69,9 +76,10 @@
 {
     [super viewDidAppear:animated];
     
-    NSString* strUsername = [LoginManager sharedInstance].loginInfo.user;
-    if (strUsername) {
-        [[MPQRService sharedInstance] getUserWithParameters:@{@"user_name":strUsername}
+    NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
+    if (strAccessCode) {
+        GetUserInfoRequest* request = [[GetUserInfoRequest alloc] initWithAccessCode:strAccessCode];
+        [[MPQRService sharedInstance] getUserWithParameters:request
                                                     success:^(User* user){
                                                         [UserManager sharedInstance].currentUser = user;
                                                         [self reloadUserInterface];
@@ -104,7 +112,6 @@
 
 - (void) btnSettingPressed
 {
-    
 }
 
 - (void) btnLogoutPressed
@@ -120,6 +127,11 @@
                      [UserManager sharedInstance].currentUser = nil;
                      LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
                      [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+                     NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
+                     [[MPQRService sharedInstance] logoutWithParameters:[[LogoutRequest alloc] initWithAccessCode:strAccessCode]
+                                                                success:^(LoginResponse* response){
+                                                                } failure:^(NSError* error){
+                                                                }];
                      
                  } withNoBlock:^(DialogViewController* dialog){
                  }];
@@ -223,7 +235,7 @@
             [_pagerView scrollToItemAtIndex:index animated:NO];
             RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
             PaymentInstrument* instr = [instruments objectAtIndex:index];
-            _balanceDisplay.text = [instr getFormattedAmount];
+            _balanceDisplay.text = [CurrencyFormatter getFormattedAmountWithValue:instr.balance];
         });
     }
 }
@@ -268,12 +280,12 @@
 
 - (void) pagerViewDidScroll:(FSPagerView *)pagerView
 {
-    static NSInteger index;
+    static int index;
     if (index != pagerView.currentIndex) {
-        index = pagerView.currentIndex;
-        NSString* strUsername = [LoginManager sharedInstance].loginInfo.user;
-        [[MPQRService sharedInstance] changeDefaultCardWithParameters:@{@"user_name":strUsername,
-                                                                        @"index":[NSNumber numberWithInteger:index]}
+        index = (int) pagerView.currentIndex;
+        NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
+        ChangeDefaultCardRequest* request = [[ChangeDefaultCardRequest alloc] initWithAccessCode:accessCode index:index];
+        [[MPQRService sharedInstance] changeDefaultCardWithParameters:request
                                                               success:^(User* user){
                                                                   [UserManager sharedInstance].currentUser = user;
                                                                   [self reloadCarfInfo];

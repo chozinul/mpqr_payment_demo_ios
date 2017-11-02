@@ -10,7 +10,7 @@
 
 @interface LoginResponse : RLMObject
 
-@property NSString* user;
+@property NSString* accessCode;
 @property NSString* token;
 
 @end

@@ -34,7 +34,7 @@
     return -1;
 }
 
-- (PaymentInstrument*) getDefaultCard
+- (PaymentInstrument* _Nullable) getDefaultCard
 {
     RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
     for (int i = 0; i < instruments.count; i++) {
@@ -45,4 +45,17 @@
     }
     return nil;
 }
+
+- (PaymentInstrument* _Nullable) getuserCardWithID:(NSInteger) ID
+{
+    RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
+    for (int i = 0; i < instruments.count; i++) {
+        PaymentInstrument* instr = [instruments objectAtIndex:i];
+        if (instr.id == ID) {
+            return instr;
+        }
+    }
+    return nil;
+}
+
 @end

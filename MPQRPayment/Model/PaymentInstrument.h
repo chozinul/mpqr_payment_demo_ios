@@ -20,6 +20,6 @@
 @property NSString* currencyNumericCode;
 @property BOOL isDefault;
 
-- (NSString*) getFormattedAmount;
+//- (NSString*) getFormattedAmount;
 
 @end
