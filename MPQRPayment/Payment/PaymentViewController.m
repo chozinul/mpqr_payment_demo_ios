@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 26/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "PaymentViewController.h"
@@ -26,17 +26,6 @@
 
 @import MasterpassQRCoreSDK;
 
-/*
- @property  long userId;
- @property  long cardId;
- @property  BOOL isDynamic;
- @property  double transactionAmount;
- @property  TipConvenienceIndicator tipType;
- @property  double tip;
- @property  NSString* currencyNumericCode;
- @property  NSString* mobile;
- @property  Merchant* merchant;
- */
 @interface PaymentViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *merchantName;
 @property (weak, nonatomic) IBOutlet UILabel *merchantCity;
@@ -53,9 +42,18 @@
 
 @end
 
+/**
+ This class is responsible for payment to be done
+ Change default card feature is also available
+ (can be improved: make custom control for textfield)
+ */
 @implementation PaymentViewController
 
+
 #pragma mark - Lifecycle
+/**
+ setup UI based on payment data and user data
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -97,10 +95,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //keyboard behaviour to control the payment button
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    
+    //set the position of the payment button
     CGRect f = self.section4.frame;
     f.origin.y = self.view.bounds.size.height - f.size.height;
     f.origin.x = 0;
@@ -112,11 +111,17 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    //remove observer if the page is about to disappear
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark - Actions
+/**
+ Change default card by calling the server
+ Returning response is user object with change in default card
+ Update UI once the default card is successful
+ */
 - (IBAction)changeCard:(id)sender {
     CardChooserViewController* dvg = [CardChooserViewController new];
     dvg.dialogHeight = 400;
@@ -141,6 +146,13 @@
                      
                  }];
 }
+
+/**
+ Payment with reconfirm pin and use payment data
+ Login to server again to reconfirm pin
+ Make payment with payment data
+ Show receipt once the payment is done
+ */
 - (IBAction)pay:(id)sender {
     PinDialogViewController* dvg = [PinDialogViewController new];
     dvg.dialogTitle = @"Enter PIN";
@@ -167,16 +179,6 @@
                                                                    NSNumber* transactionAmountTotal = [NSNumber numberWithDouble:[self calculateTotalAmount]];
                                                                    NSNumber* tip = [NSNumber numberWithDouble:[self calculateTipAmount]];
                                                                    NSString* terminalNumber = _paymentData.merchant.terminalNumber;
-//                                                                   NSDictionary* parameter = @{@"sender_id":senderId,
-//                                                                                               @"sender_card_id":cardID,
-//                                                                                               @"receiver_card_number":mastercardID?mastercardID:@"",
-//                                                                                               @"receiver_name":merchantName?merchantName:@"",
-//                                                                                               @"currency": currency?currency:@"",
-//                                                                                               @"transaction_amount_total": transactionAmount,
-//                                                                                               @"tip":tip,
-//                                                                                               @"terminal_number": terminalNumber?terminalNumber:@""
-//                                                                                               };
-                                                                   
                                                                    MakePaymentRequest* request = [[MakePaymentRequest alloc]
                                                                                                   initWithAccesCode:strAccessCode
                                                                                                   senderID:senderId.integerValue
@@ -204,6 +206,9 @@
                  }];
 }
 
+/**
+ Helper to show message or error
+ */
 - (void) showCancelDialog{
     DialogViewController* dvg = [DialogViewController new];
     dvg.dialogMessage = @"Do you want to cancel?";
@@ -216,8 +221,10 @@
                  }];
 }
 
-
-#pragma mark - textfield movement
+/**
+ Format the text 
+ */
+#pragma mark - textfield formating
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

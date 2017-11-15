@@ -10,7 +10,6 @@
 		1E04A49503777A4884AF3B2C /* Pods_MPQRPayment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BD9B435CCAC46108932C17 /* Pods_MPQRPayment.framework */; };
 		2B3F55C822449BB873B477F8 /* Pods_MPQRPaymentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0280776098EA1A7741FE41 /* Pods_MPQRPaymentTests.framework */; };
 		C10736B11FA08C0000646ACE /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B01FA08C0000646ACE /* Transaction.m */; };
-		C10736B51FA08FC100646ACE /* CurrencyEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B41FA08D7F00646ACE /* CurrencyEnum.m */; };
 		C10736B81FA093E500646ACE /* PaymentInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736B71FA093E500646ACE /* PaymentInstrument.m */; };
 		C10736BB1FA09B9000646ACE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736BA1FA09B9000646ACE /* User.m */; };
 		C10736BF1FA0CD6500646ACE /* MPQRService.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736BE1FA0CD6500646ACE /* MPQRService.m */; };
@@ -26,6 +25,7 @@
 		C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E11FA21E1E00646ACE /* PaymentViewController.m */; };
 		C10736E91FA2DADA00646ACE /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736E81FA2DADA00646ACE /* TransactionListViewController.m */; };
 		C10736EC1FA320D400646ACE /* TransactionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */; };
+		C13D1AC51FBC107800C29CB0 /* MoneyInput.m in Sources */ = {isa = PBXBuildFile; fileRef = C13D1AC41FBC107800C29CB0 /* MoneyInput.m */; };
 		C1481A471FA598D30044FAA3 /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1481A461FA598D30044FAA3 /* DialogViewController.m */; };
 		C1481A4A1FA59A910044FAA3 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1481A491FA59A910044FAA3 /* ColorManager.m */; };
 		C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B741FA06FBD00EA873F /* AppDelegate.m */; };
@@ -71,8 +71,6 @@
 		A8D394D60302AD498BA79033 /* Pods-MPQRPayment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MPQRPayment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MPQRPayment/Pods-MPQRPayment.debug.xcconfig"; sourceTree = "<group>"; };
 		C10736AF1FA08C0000646ACE /* Transaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		C10736B01FA08C0000646ACE /* Transaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
-		C10736B31FA08D7F00646ACE /* CurrencyEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyEnum.h; sourceTree = "<group>"; };
-		C10736B41FA08D7F00646ACE /* CurrencyEnum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyEnum.m; sourceTree = "<group>"; };
 		C10736B61FA093E500646ACE /* PaymentInstrument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentInstrument.h; sourceTree = "<group>"; };
 		C10736B71FA093E500646ACE /* PaymentInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentInstrument.m; sourceTree = "<group>"; };
 		C10736B91FA09B9000646ACE /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -103,6 +101,8 @@
 		C10736E81FA2DADA00646ACE /* TransactionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
 		C10736EA1FA320D400646ACE /* TransactionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionDetailViewController.h; sourceTree = "<group>"; };
 		C10736EB1FA320D400646ACE /* TransactionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransactionDetailViewController.m; sourceTree = "<group>"; };
+		C13D1AC31FBC107800C29CB0 /* MoneyInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoneyInput.h; sourceTree = "<group>"; };
+		C13D1AC41FBC107800C29CB0 /* MoneyInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoneyInput.m; sourceTree = "<group>"; };
 		C1481A451FA598D30044FAA3 /* DialogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
 		C1481A461FA598D30044FAA3 /* DialogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
 		C1481A481FA59A910044FAA3 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
@@ -187,8 +187,6 @@
 		C10736B21FA08D6D00646ACE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C10736B31FA08D7F00646ACE /* CurrencyEnum.h */,
-				C10736B41FA08D7F00646ACE /* CurrencyEnum.m */,
 				C1481A481FA59A910044FAA3 /* ColorManager.h */,
 				C1481A491FA59A910044FAA3 /* ColorManager.m */,
 				C1D5BCA81FA8471B0050CE45 /* CurrencyFormatter.h */,
@@ -252,6 +250,8 @@
 		C10736DC1FA1F6DA00646ACE /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				C13D1AC31FBC107800C29CB0 /* MoneyInput.h */,
+				C13D1AC41FBC107800C29CB0 /* MoneyInput.m */,
 				C10736E01FA21E1E00646ACE /* PaymentViewController.h */,
 				C10736E11FA21E1E00646ACE /* PaymentViewController.m */,
 				C1D5BC901FA6E2CF0050CE45 /* ReceiptViewController.h */,
@@ -639,7 +639,6 @@
 				C1C0777C1FAA128700D26D8C /* TransactionsRequest.m in Sources */,
 				C10736BB1FA09B9000646ACE /* User.m in Sources */,
 				C10736D41FA1798500646ACE /* LoginViewController.m in Sources */,
-				C10736B51FA08FC100646ACE /* CurrencyEnum.m in Sources */,
 				C1D5BCA61FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m in Sources */,
 				C1D5BCB31FA87A000050CE45 /* LoginRequest.m in Sources */,
 				C10736D71FA17C8200646ACE /* LoginManager.m in Sources */,
@@ -650,6 +649,7 @@
 				C1D5BC971FA80B3E0050CE45 /* BaseViewController.m in Sources */,
 				C1D5BCBC1FA885610050CE45 /* LogoutRequest.m in Sources */,
 				C1D5BC9F1FA81F190050CE45 /* InstrumentChooserView.m in Sources */,
+				C13D1AC51FBC107800C29CB0 /* MoneyInput.m in Sources */,
 				C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */,
 				C1B29B831FA06FBD00EA873F /* main.m in Sources */,
 				C1D5BC921FA6E2CF0050CE45 /* ReceiptViewController.m in Sources */,

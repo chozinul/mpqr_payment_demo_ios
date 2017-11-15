@@ -3,8 +3,9 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 25/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
+
 
 #import "MainViewController.h"
 #import "MPQRService.h"
@@ -29,6 +30,12 @@
 @import MasterpassQRScanSDK;
 @import AVFoundation;
 
+/**
+ This MainViewController is responsible:
+ - As the root view  of navigation view controller, which entry point for user interface of the application,
+ - It will call other view controller, such as Login, Scanner, and Payment
+ - It will manage the data passing required for other view controller, such as payment
+ */
 @interface MainViewController ()<FSPagerViewDataSource, FSPagerViewDelegate>
 {
     UIImageView* logoView;
@@ -41,14 +48,17 @@
 
 @implementation MainViewController
 
+/**
+ This method is called once in the MainViewController lifecycle and responsible for:
+ - Add additional UI componet that is not initialized from NIB:
+ - Setup additional appearance that is not done in NIB: UINavigation bar appearance
+ - Call the Login page when the application started, it only call once, unless the user logout
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTranslucent:NO];
-    
-
-    
     
     _pagerView.dataSource = self;
     _pagerView.delegate = self;
@@ -58,20 +68,20 @@
     
     UIImage* logo = [UIImage imageNamed:@"masterpassqr_logo"];
     logoView = [[UIImageView alloc] initWithImage:logo];
-//
-//    UIBarButtonItem* barBtnSetting = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_settings"]
-//                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(btnSettingPressed)];
     
     UIBarButtonItem* barBtnLogout = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_logout"]
                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(btnLogoutPressed)];
-    self.navigationItem.rightBarButtonItems = @[barBtnLogout
-//                                                , barBtnSetting
-                                                ];
+    self.navigationItem.rightBarButtonItems = @[barBtnLogout];
     
     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
 }
 
+/**
+ This method is called everytime the view controller appeared from other page
+ - It update the user information after user do login (can be improved: as it is not so straight forward)
+ - It also refresh the content of the user interface
+ */
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -91,12 +101,20 @@
     [self reloadUserInterface];
 }
 
+/**
+ It is called everytime the page is appear
+ - It will add the mastercard logo on the navigation bar
+ */
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationItem.titleView = logoView;
 }
 
+/**
+ It is called everytime the page going to disappear
+ - It remove the logo from the top bar
+ */
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -114,6 +132,12 @@
 {
 }
 
+/**
+ It prompt the user if they want to logout of the application
+ It call server that the user logging out
+ It removes current user information
+ It call Login page
+ */
 - (void) btnLogoutPressed
 {
     DialogViewController* dvg = [DialogViewController new];
@@ -122,27 +146,41 @@
     dvg.negativeResponse = @"CANCEL";
     [dvg showDialogWithContex:self.navigationController
                  withYesBlock:^(DialogViewController* dialog){
-                     
-                     [LoginManager sharedInstance].loginInfo = nil;
-                     [UserManager sharedInstance].currentUser = nil;
-                     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-                     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+
                      NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
                      [[MPQRService sharedInstance] logoutWithParameters:[[LogoutRequest alloc] initWithAccessCode:strAccessCode]
                                                                 success:^(LoginResponse* response){
                                                                 } failure:^(NSError* error){
                                                                 }];
                      
+                     [LoginManager sharedInstance].loginInfo = nil;
+                     [UserManager sharedInstance].currentUser = nil;
+                     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+                     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+                     
+
+                     
                  } withNoBlock:^(DialogViewController* dialog){
                  }];
 }
 
+/**
+ It call the transaction history page
+ The transaction history data will retrieve from server from the transaction history page
+ */
 - (IBAction)openTransactionHistory:(id)sender {
-    
     TransactionListViewController* transactionVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TransactionListViewController"];
     [self.navigationController pushViewController:transactionVC animated:YES];
 }
 
+/**
+ It responsible for overall canning logic
+ It check permission to scan
+ It call the scanner page
+ It call the payment manager to parse the scan result
+ It call the payment page and pass the parsed data
+ (can be improved: do this process in the payment manager)
+ */
 - (IBAction)startScan:(id)sender {
     if (![QRCodeReader isAvailable] || ![QRCodeReader supportsQRCode]) {
         return;
@@ -209,6 +247,10 @@
     }
 }
 
+#pragma mark - Helper
+/**
+ Show alert or error in the process
+ */
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     DialogViewController* dialogVC = [DialogViewController new];
     dialogVC.dialogMessage = message;
@@ -220,17 +262,24 @@
 }
 
 #pragma mark - Update UI
+/**
+ Reload the card
+ Select the selecting card after all card is loaded
+ */
 - (void) reloadUserInterface
 {
     [_pagerView reloadData];
     [self reloadCarfInfo];
 }
 
+/**
+ Select the selecting card after all card is loaded
+ */
 - (void) reloadCarfInfo
 {
     int index = [[UserManager sharedInstance] getDefaultCardIndex];
     if (index != -1) {
-        // Delay 2 seconds
+        // Delay 0.1 seconds
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [_pagerView scrollToItemAtIndex:index animated:NO];
             RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
@@ -241,11 +290,16 @@
 }
 
 #pragma mark - FSPagerViewDataSource
-
+/**
+ Set number of card
+ */
 - (NSInteger)numberOfItemsInPagerView:(FSPagerView * _Nonnull)pagerView {
     return [UserManager sharedInstance].currentUser.paymentInstruments.count;
 }
 
+/**
+ Reload the card
+ */
 - (FSPagerViewCell * _Nonnull)pagerView:(FSPagerView * _Nonnull)pagerView cellForItemAtIndex:(NSInteger)index {
     FSPagerViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:@"cell" atIndex:index];
     
@@ -278,6 +332,10 @@
 {
 }
 
+/**
+ Call server to change the default card
+ Change default card and reload the UI of the card
+ */
 - (void) pagerViewDidScroll:(FSPagerView *)pagerView
 {
     static int index;

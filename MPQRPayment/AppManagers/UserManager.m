@@ -3,12 +3,16 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 26/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "UserManager.h"
 #import "PaymentInstrument.h"
 
+/**
+ It store user information
+ It provide convenient access to user attributes, such as default card
+ */
 @implementation UserManager
 
 + (instancetype _Nonnull)sharedInstance

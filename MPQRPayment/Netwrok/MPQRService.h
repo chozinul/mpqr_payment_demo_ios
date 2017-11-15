@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 25/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,7 +14,12 @@
 @class User;
 @class Transaction;
 
-
+/**
+ Responsible for communication app with mock server
+ - In real app, responsible for parsing response from server to object
+ - In real app, responsible for change request object to parameters
+ - Responsible to call server API
+ */
 @interface MPQRService : NSObject
 
 + (instancetype _Nonnull )sharedInstance;

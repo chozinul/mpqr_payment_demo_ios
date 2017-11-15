@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 27/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "TransactionListViewController.h"
@@ -33,6 +33,11 @@
 
 @end
 
+/**
+ This class is to display all the transaction that has been done by particulat payment instrument (card)
+ It will retrieve the transaction data from the MPQR server and display it
+ 
+ */
 @interface TransactionListViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *lblAcquirer;
@@ -43,6 +48,10 @@
 
 @implementation TransactionListViewController
 
+/**
+setup necessary user interface
+get the data from the MPQR server
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,8 +61,9 @@
     
     self.lblAcquirer.text = senderAcquiredName;
     self.lblMaskedIdentifier.text = senderMaskIdentified;
-    NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
     
+    //retirve the data from MPQR server
+    NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
     TransactionsRequest* request = [[TransactionsRequest alloc] initWithAccessCode:accessCode senderCardIdentifier:cardID];
     [[MPQRService sharedInstance] getTransactionsParameters:request
                                                     success:^(RLMResults<Transaction*> *list){
@@ -70,7 +80,6 @@
                                                     } failure:^(NSError* error){
                                                         
                                                     }];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,44 +87,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 #pragma mark - Table view data source
-
+///number of section of the table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
+///number of data should be displayed in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.transactionList.count;
 }
 
+///configure table view cell based on each transaction
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TransactionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionViewCell" forIndexPath:indexPath];
     Transaction* trans = [_transactionList objectAtIndex:indexPath.row];
     cell.lblMerchant.text = trans.merchantName;
     cell.lblMoney.text = [NSString stringWithFormat:@"%@", [CurrencyFormatter getFormattedAmountWithValue:trans.transactionAmount + trans.tipAmount]];
-    
     cell.lblDate.text = [trans getFormattedTransactionDate];
     return cell;
 }
 
+///height of the table view
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*) indexPath
 {
     return 90;
 }
 
 #pragma mark - Table view delegate
-
+/**
+ Select particular transaction data from the list of transactions
+ Open detailed transaction page
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Transaction* trans = [_transactionList objectAtIndex:indexPath.row];

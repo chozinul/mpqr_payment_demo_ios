@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 25/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "Transaction.h"
@@ -16,11 +16,6 @@
     [dateFormatter setDateFormat:@"yyyy/M/dd hh:mm"];
     NSDate* date = self.transactionDate;
     return [dateFormatter stringFromDate:date];
-}
-
-- (CurrencyEnum) getCurrencyCode
-{
-    return [CurrencyEnumLookup enumFor:_currencyNumericCode];
 }
 
 - (BOOL) isEqual:(id _Nullable)object

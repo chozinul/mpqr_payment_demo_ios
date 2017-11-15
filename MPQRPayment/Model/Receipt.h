@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 25/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,6 +11,10 @@
 @class Transaction;
 @class PaymentData;
 
+/**
+ The class is for convenient for creating receipt
+ Its informations is derived from transaction information and payment data
+ */
 @interface Receipt : NSObject
 
 @property NSString* _Nullable merchantName;

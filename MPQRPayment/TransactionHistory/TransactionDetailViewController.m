@@ -3,13 +3,14 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 27/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "TransactionDetailViewController.h"
 #import "Transaction.h"
-#import "CurrencyEnum.h"
 #import "CurrencyFormatter.h"
+
+@import MasterpassQRCoreSDK;
 
 @interface TransactionDetailViewCell ()
 

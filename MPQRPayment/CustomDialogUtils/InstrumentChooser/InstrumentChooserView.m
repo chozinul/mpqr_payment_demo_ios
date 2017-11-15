@@ -3,19 +3,16 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 31/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "InstrumentChooserView.h"
 
+/**
+ This class contain the body of the card chooser
+ It contain table view to display radio button list
+ (can be improved: this class is unnecessary)
+ */
 @implementation InstrumentChooserView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

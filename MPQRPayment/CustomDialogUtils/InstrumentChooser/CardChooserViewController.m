@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 31/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "CardChooserViewController.h"
@@ -22,6 +22,10 @@
 }
 @end
 
+/**
+ This class is subclass of DialogViewController
+ It ask user to choose the credit card using radio button
+ */
 @implementation CardChooserViewController
 
 - (void)viewDidLoad {
@@ -42,6 +46,9 @@
 }
 
 
+/**
+ Override the body setup by putting table view that contain radio button cell
+ */
 - (void) setupBody:(UIView*) bodyView
 {
     bodyView.backgroundColor = [UIColor whiteColor];

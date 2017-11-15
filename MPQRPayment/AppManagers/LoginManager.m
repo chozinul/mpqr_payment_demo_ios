@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 26/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "LoginManager.h"
@@ -13,6 +13,10 @@
 
 @end
 
+/**
+ Save access id and token for server API call
+ Save last access code for easier login
+ */
 @implementation LoginManager
 
 static NSString* _lastUser;

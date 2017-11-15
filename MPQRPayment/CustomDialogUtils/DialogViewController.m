@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 29/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "DialogViewController.h"
@@ -15,6 +15,13 @@
 @property DialogViewControllerCompletionBlock _Nullable completionBlockFail;
 @end
 
+/**
+ This class is to show dialog as alert or asking user an input
+ The UI is devided into header, body, and footer
+ Header contain Mastercard logo
+ Body contain the actual aler message or expected input
+ Footer contain positive button (i.e. YES) or negative button (i.e. NO)
+ */
 @implementation DialogViewController
 
 - (nonnull id) init
@@ -115,6 +122,10 @@
 }
 
 #pragma mark - Setup UI
+/**
+ Setup the header of the dialog
+ By default the header is Mastercard logo
+ */
 - (void) setupHeader:(UIView*) headerView
 {
     headerView.backgroundColor = [ColorManager sharedInstance].blackColorHeader;
@@ -144,6 +155,10 @@
     [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[deviderLine(2)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(deviderLine)]];
 }
 
+/**
+ Setup the body of the dialog
+ By default the body is alert message
+ */
 - (void) setupBody:(UIView*) bodyView
 {
     bodyView.backgroundColor = [UIColor whiteColor];
@@ -166,6 +181,10 @@
                                    constant:0]];
 }
 
+/**
+ Setup the footer of the dialog
+ By default it contain positive and negative response
+ */
 - (void) setupFooter:(UIView*) footerView
 {
     footerView.backgroundColor = [UIColor whiteColor];

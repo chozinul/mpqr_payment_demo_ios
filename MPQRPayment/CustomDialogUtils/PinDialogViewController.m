@@ -3,17 +3,25 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 30/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "PinDialogViewController.h"
 #import "ColorManager.h"
+
 
 @interface PinDialogViewController ()
 {
     NSString* _pin;
 }
 @end
+
+/**
+ This class is to input pin when transaction is about to happen
+ This class is subclass of the DialogViewController
+ The way you call this class is the same at calling DialogViewController
+ Additional property pin can be access after finish calling this class
+ */
 
 @implementation PinDialogViewController
 
@@ -28,21 +36,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+/**
+ Make the header transparent instead of having mastercard logo
+ */
 - (void) setupHeader:(UIView*) headerView
 {
     headerView.backgroundColor = [UIColor clearColor];
 }
 
+/**
+ Set the body of with the pin input and some lable
+ */
 - (void) setupBody:(UIView*) bodyView
 {
     bodyView.backgroundColor = [UIColor whiteColor];
@@ -98,6 +103,9 @@
     _pin = textField.text;
 }
 
+/**
+ Accessing pin property
+ */
 - (NSString*) pin
 {
     return _pin;

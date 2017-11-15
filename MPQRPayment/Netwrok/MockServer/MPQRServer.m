@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 25/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "MPQRServer.h"
@@ -19,6 +19,13 @@
 #import "TransactionsRequest.h"
 #import "MakePaymentRequest.h"
 
+/**
+ This class behaves as mock server for the mobile payment demo
+ This class is responsible for managing user, payment, transaction data
+ The data is stored in Realm database
+ Modification and Creation of the data are done here
+ (can be improved: all the handling may be put in separate function of class handler)
+ */
 @implementation MPQRServer
 
 + (instancetype _Nonnull)sharedInstance
@@ -37,6 +44,11 @@
                                success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure
 {
+    /**
+     Validate the login, i.e. password must be 123456
+     Create new user, new user ID is based on access code
+     Return login respond
+     */
     if ([URLString isEqualToString:@"/login"]) {
         LoginRequest* loginRequest = (LoginRequest*) parameters;
         //isvalidcredential
@@ -58,10 +70,12 @@
         [self createNewUserWithUserName:strAccesCode];
     }
     
+    /**
+     Return user information that has been created when user login
+     */
     if ([URLString isEqualToString:@"/getuserinfo"]) {
         
         GetUserInfoRequest* params = (GetUserInfoRequest*) parameters;
-        
         NSString* strAccessCode = params.accessCode;
         if(!strAccessCode)
         {
@@ -83,7 +97,11 @@
 
     }
     
-    
+    /**
+     User default card change
+     The default card is the card that being used for next transaction
+     It will return the user object as response
+     */
     if ([URLString isEqualToString:@"/changedefaultcard"]) {
 
         ChangeDefaultCardRequest* params = (ChangeDefaultCardRequest*) parameters;
@@ -122,6 +140,14 @@
         }
     }
     
+    /**
+     Make payment
+     It will check if the balance of default card is enough
+     It will deduct the amount of the default card
+     It will create new transaction
+     It will assign the transaction to the user
+     It will return transaction as response
+     */
     if ([URLString isEqualToString:@"/makepayment"]) {
         MakePaymentRequest* request = (MakePaymentRequest*) parameters;
         
@@ -168,6 +194,10 @@
         }
     }
     
+    /**
+     Given card identifier, It will retrive corresponding transactions
+     It will return list of transaction as response
+     */
     if ([URLString isEqualToString:@"/transactions"]) {
         TransactionsRequest* request = (TransactionsRequest*) parameters;
         
@@ -186,7 +216,9 @@
         }
     }
     
-    
+    /**
+     Suppose to do necessary thing for logout in real server environment
+     */
     if ([URLString isEqualToString:@"/logout"]) {
 
     }
@@ -195,6 +227,9 @@
 }
 
 #pragma mark - Helper
+/**
+ Print database for debug purpose
+ */
 - (void) printUsers
 {
     RLMResults<User *> *users = [User allObjects];
@@ -210,6 +245,10 @@
     }
 }
 #pragma mark - Login
+/**
+ Check if it is valid credential
+ i.e. access code has value, pin is equal to 123456
+ */
 - (BOOL) isValidCredential:(NSString*) accessCode pin:(NSString*) pin
 {
     
@@ -223,6 +262,9 @@
     return true;
 }
 
+/**
+ Create new user and create new cards for the user
+ */
 - (void) createNewUserWithUserName:(NSString*) userName
 {
     // Get the default Realm

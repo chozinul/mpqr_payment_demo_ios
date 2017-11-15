@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 30/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "ReceiptViewController.h"
@@ -23,8 +23,14 @@
 
 @end
 
+/**
+ This class is to display the receipt of the transaction
+ */
 @implementation ReceiptViewController
 
+/**
+ Set all the property of the receipt
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     _lblTotal.text = [NSString stringWithFormat:@"%@ %@"

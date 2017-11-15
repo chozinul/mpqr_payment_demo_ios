@@ -3,12 +3,15 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 26/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "CurrencyEnum.h"
 
+/**
+ Used to store data for payment
+ Derived from push payment data from MPQR core SDK
+ */
 @import MasterpassQRCoreSDK;
 
 @class Merchant;

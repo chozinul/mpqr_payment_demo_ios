@@ -3,7 +3,7 @@
 //  MPQRPayment
 //
 //  Created by Muchamad Chozinul Amri on 26/10/17.
-//  Copyright © 2017 Muchamad Chozinul Amri. All rights reserved.
+//  Copyright © 2017 Mastercard. All rights reserved.
 //
 
 #import "PaymentData.h"
@@ -24,11 +24,5 @@
 {
     return _transactionAmount + [self getTipAmount];
 }
-
-- (CurrencyEnum) getCurrencyCode
-{
-    return [CurrencyEnumLookup enumFor:_currencyNumericCode];
-}
-
 
 @end
