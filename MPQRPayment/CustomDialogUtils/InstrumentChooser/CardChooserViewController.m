@@ -7,17 +7,17 @@
 //
 
 #import "CardChooserViewController.h"
-#import "InstrumentChooserView.h"
 #import "InstrumentChooserTableViewCell.h"
 #import "ColorManager.h"
 #import "UserManager.h"
 #import "User.h"
 #import "PaymentInstrument.h"
 #import "CurrencyFormatter.h"
+@import MasterpassQRCoreSDK;
 
 @interface CardChooserViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
-    InstrumentChooserView* container;
+    UITableView* tableView;
     NSMutableArray* arrayData;
 }
 @end
@@ -53,13 +53,13 @@
 {
     bodyView.backgroundColor = [UIColor whiteColor];
     //add Title
-    container = [[[NSBundle mainBundle] loadNibNamed:@"InstrumentChooserView" owner:self options:nil] objectAtIndex:0];
-    container.translatesAutoresizingMaskIntoConstraints = NO;
-    container.tableView.dataSource = self;
-    container.tableView.delegate = self;
-    [bodyView addSubview:container];
-    [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[container]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
-    [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[container]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(container)]];
+    tableView = [UITableView new];
+    tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [bodyView addSubview:tableView];
+    [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[tableView]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
+    [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[tableView]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
 }
 
 #pragma mark - Table view data source
@@ -94,9 +94,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectedIndex = indexPath.row;
-    [container.tableView reloadData];
+    [tableView reloadData];
 }
-
 
 #pragma mark - Configure Cell
 - (void) configureCell:(InstrumentChooserTableViewCell*) cell forIndexPath:(NSIndexPath*) indexPath
@@ -120,7 +119,9 @@
     }
     
     //balance
-    cell.lblBalance.text = [CurrencyFormatter getFormattedAmountWithValue:instrument.balance];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:instrument.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
+    cell.lblBalance.text = [CurrencyFormatter getFormattedAmountWithValue:instrument.balance decimalPoint:decimalPoint];
     
     //masked identifier
     cell.lblMaskedIndentifier.text = instrument.maskedIdentifier;

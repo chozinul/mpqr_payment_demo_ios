@@ -10,12 +10,15 @@
 
 @implementation CurrencyFormatter
 
-+ (NSString*) getFormattedAmountWithValue:(double) value{
-    NSNumberFormatter * formatter = [NSNumberFormatter new];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
-    [formatter setLocale:[NSLocale currentLocale]];
-    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:value]];
++ (NSString*) getFormattedAmountWithValue:(double) value decimalPoint:(int) decimalPoint{
+//    NSNumberFormatter * formatter = [NSNumberFormatter new];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    [formatter setMaximumFractionDigits:decimalPoint]; // Set this if you need 2 digits
+//    [formatter setLocale:[NSLocale currentLocale]];
+//    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:value]];
+    
+    NSString* formatString = [NSString stringWithFormat:@"%%.%dlf",decimalPoint];
+    NSString* newString = [NSString stringWithFormat:formatString, value];
     return newString;
 }
 

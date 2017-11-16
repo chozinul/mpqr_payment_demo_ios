@@ -10,6 +10,7 @@ target 'MPQRPayment' do
   pod 'MasterpassQRCoreSDK'
   pod 'MasterpassQRScanSDK'
   pod 'DLRadioButton', '~> 1.4'
+  pod 'MaterialTextField'
 
   target 'MPQRPaymentTests' do
     inherit! :search_paths

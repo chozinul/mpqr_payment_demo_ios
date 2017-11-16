@@ -67,7 +67,7 @@
 ///textfield enabled
 - (UIColor* _Nonnull) textFieldEnabledTitleColor
 {
-    return [UIColor darkGrayColor];
+    return [UIColor colorWithRed:231/255.0 green:179/255.0 blue:42/255.0 alpha:1.0];
 }
 
 
@@ -87,7 +87,7 @@
 ///textfield disabled
 - (UIColor* _Nonnull) textFieldDisabledTitleColor
 {
-    return [UIColor colorWithRed:231/255.0 green:179/255.0 blue:42/255.0 alpha:1.0];
+    return [UIColor darkGrayColor];
 }
 
 ///textfield nonzero

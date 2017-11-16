@@ -35,6 +35,9 @@
 		C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1B29B7E1FA06FBD00EA873F /* LaunchScreen.storyboard */; };
 		C1B29B831FA06FBD00EA873F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B821FA06FBD00EA873F /* main.m */; };
 		C1B29B8D1FA06FBD00EA873F /* MPQRPaymentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */; };
+		C1B3EB711FBD6F2C009C99FB /* RLMPaymentInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B3EB6C1FBD6F23009C99FB /* RLMPaymentInstrument.m */; };
+		C1B3EB721FBD6F2F009C99FB /* RLMTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B3EB6E1FBD6F23009C99FB /* RLMTransaction.m */; };
+		C1B3EB731FBD6F33009C99FB /* RLMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B3EB701FBD6F23009C99FB /* RLMUser.m */; };
 		C1C077791FAA106400D26D8C /* ChangeDefaultCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C077781FAA106400D26D8C /* ChangeDefaultCardRequest.m */; };
 		C1C0777C1FAA128700D26D8C /* TransactionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0777B1FAA128700D26D8C /* TransactionsRequest.m */; };
 		C1C0777F1FAA14DE00D26D8C /* MakePaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0777E1FAA14DE00D26D8C /* MakePaymentRequest.m */; };
@@ -42,8 +45,6 @@
 		C1D5BC921FA6E2CF0050CE45 /* ReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC911FA6E2CF0050CE45 /* ReceiptViewController.m */; };
 		C1D5BC971FA80B3E0050CE45 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC961FA80B3E0050CE45 /* BaseViewController.m */; };
 		C1D5BC9A1FA817C00050CE45 /* CardChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC991FA817C00050CE45 /* CardChooserViewController.m */; };
-		C1D5BC9C1FA81DDA0050CE45 /* InstrumentChooserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D5BC9B1FA81DDA0050CE45 /* InstrumentChooserView.xib */; };
-		C1D5BC9F1FA81F190050CE45 /* InstrumentChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BC9E1FA81F190050CE45 /* InstrumentChooserView.m */; };
 		C1D5BCA61FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BCA41FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m */; };
 		C1D5BCA71FA82B8F0050CE45 /* InstrumentChooserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D5BCA51FA82B8F0050CE45 /* InstrumentChooserTableViewCell.xib */; };
 		C1D5BCAA1FA8471B0050CE45 /* CurrencyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D5BCA91FA8471B0050CE45 /* CurrencyFormatter.m */; };
@@ -120,6 +121,12 @@
 		C1B29B881FA06FBD00EA873F /* MPQRPaymentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MPQRPaymentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B29B8C1FA06FBD00EA873F /* MPQRPaymentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPQRPaymentTests.m; sourceTree = "<group>"; };
 		C1B29B8E1FA06FBD00EA873F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1B3EB6B1FBD6F23009C99FB /* RLMPaymentInstrument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLMPaymentInstrument.h; sourceTree = "<group>"; };
+		C1B3EB6C1FBD6F23009C99FB /* RLMPaymentInstrument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLMPaymentInstrument.m; sourceTree = "<group>"; };
+		C1B3EB6D1FBD6F23009C99FB /* RLMTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLMTransaction.h; sourceTree = "<group>"; };
+		C1B3EB6E1FBD6F23009C99FB /* RLMTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLMTransaction.m; sourceTree = "<group>"; };
+		C1B3EB6F1FBD6F23009C99FB /* RLMUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLMUser.h; sourceTree = "<group>"; };
+		C1B3EB701FBD6F23009C99FB /* RLMUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RLMUser.m; sourceTree = "<group>"; };
 		C1C077771FAA106400D26D8C /* ChangeDefaultCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeDefaultCardRequest.h; sourceTree = "<group>"; };
 		C1C077781FAA106400D26D8C /* ChangeDefaultCardRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeDefaultCardRequest.m; sourceTree = "<group>"; };
 		C1C0777A1FAA128700D26D8C /* TransactionsRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionsRequest.h; sourceTree = "<group>"; };
@@ -134,9 +141,6 @@
 		C1D5BC961FA80B3E0050CE45 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		C1D5BC981FA817C00050CE45 /* CardChooserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardChooserViewController.h; sourceTree = "<group>"; };
 		C1D5BC991FA817C00050CE45 /* CardChooserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardChooserViewController.m; sourceTree = "<group>"; };
-		C1D5BC9B1FA81DDA0050CE45 /* InstrumentChooserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstrumentChooserView.xib; sourceTree = "<group>"; };
-		C1D5BC9D1FA81F190050CE45 /* InstrumentChooserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstrumentChooserView.h; sourceTree = "<group>"; };
-		C1D5BC9E1FA81F190050CE45 /* InstrumentChooserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstrumentChooserView.m; sourceTree = "<group>"; };
 		C1D5BCA31FA82B8F0050CE45 /* InstrumentChooserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstrumentChooserTableViewCell.h; sourceTree = "<group>"; };
 		C1D5BCA41FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstrumentChooserTableViewCell.m; sourceTree = "<group>"; };
 		C1D5BCA51FA82B8F0050CE45 /* InstrumentChooserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstrumentChooserTableViewCell.xib; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		C10736BC1FA0CCD100646ACE /* Netwrok */ = {
 			isa = PBXGroup;
 			children = (
+				C1B3EB6A1FBD6F23009C99FB /* Model */,
 				C1D5BCB01FA879E00050CE45 /* Request */,
 				C10736C41FA0D4E600646ACE /* MockServer */,
 				C10736C01FA0CF4500646ACE /* Response */,
@@ -328,18 +333,31 @@
 		C1B29B991FA0886600EA873F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C10736C91FA14E8D00646ACE /* Receipt.h */,
-				C10736C81FA14E8D00646ACE /* Receipt.m */,
+				C10736B91FA09B9000646ACE /* User.h */,
+				C10736BA1FA09B9000646ACE /* User.m */,
 				C10736AF1FA08C0000646ACE /* Transaction.h */,
 				C10736B01FA08C0000646ACE /* Transaction.m */,
 				C10736B61FA093E500646ACE /* PaymentInstrument.h */,
 				C10736B71FA093E500646ACE /* PaymentInstrument.m */,
-				C10736B91FA09B9000646ACE /* User.h */,
-				C10736BA1FA09B9000646ACE /* User.m */,
+				C10736C91FA14E8D00646ACE /* Receipt.h */,
+				C10736C81FA14E8D00646ACE /* Receipt.m */,
 				C10736CB1FA1508B00646ACE /* Merchant.h */,
 				C10736CC1FA1508B00646ACE /* Merchant.m */,
 				C10736CE1FA1753100646ACE /* PaymentData.h */,
 				C10736CF1FA1753100646ACE /* PaymentData.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C1B3EB6A1FBD6F23009C99FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C1B3EB6B1FBD6F23009C99FB /* RLMPaymentInstrument.h */,
+				C1B3EB6C1FBD6F23009C99FB /* RLMPaymentInstrument.m */,
+				C1B3EB6D1FBD6F23009C99FB /* RLMTransaction.h */,
+				C1B3EB6E1FBD6F23009C99FB /* RLMTransaction.m */,
+				C1B3EB6F1FBD6F23009C99FB /* RLMUser.h */,
+				C1B3EB701FBD6F23009C99FB /* RLMUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,9 +388,6 @@
 			children = (
 				C1D5BC981FA817C00050CE45 /* CardChooserViewController.h */,
 				C1D5BC991FA817C00050CE45 /* CardChooserViewController.m */,
-				C1D5BC9D1FA81F190050CE45 /* InstrumentChooserView.h */,
-				C1D5BC9E1FA81F190050CE45 /* InstrumentChooserView.m */,
-				C1D5BC9B1FA81DDA0050CE45 /* InstrumentChooserView.xib */,
 				C1D5BCA31FA82B8F0050CE45 /* InstrumentChooserTableViewCell.h */,
 				C1D5BCA41FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m */,
 				C1D5BCA51FA82B8F0050CE45 /* InstrumentChooserTableViewCell.xib */,
@@ -498,7 +513,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1D5BC9C1FA81DDA0050CE45 /* InstrumentChooserView.xib in Resources */,
 				C1B29B801FA06FBD00EA873F /* LaunchScreen.storyboard in Resources */,
 				C1D5BCA71FA82B8F0050CE45 /* InstrumentChooserTableViewCell.xib in Resources */,
 				C1B29B7D1FA06FBD00EA873F /* Assets.xcassets in Resources */,
@@ -608,6 +622,7 @@
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${PODS_ROOT}/MasterpassQRCoreSDK/Frameworks/MasterpassQRCoreSDK.framework",
 				"${PODS_ROOT}/MasterpassQRScanSDK/Frameworks/MasterpassQRScanSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -616,6 +631,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MasterpassQRCoreSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MasterpassQRScanSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +656,7 @@
 				C10736BB1FA09B9000646ACE /* User.m in Sources */,
 				C10736D41FA1798500646ACE /* LoginViewController.m in Sources */,
 				C1D5BCA61FA82B8F0050CE45 /* InstrumentChooserTableViewCell.m in Sources */,
+				C1B3EB721FBD6F2F009C99FB /* RLMTransaction.m in Sources */,
 				C1D5BCB31FA87A000050CE45 /* LoginRequest.m in Sources */,
 				C10736D71FA17C8200646ACE /* LoginManager.m in Sources */,
 				C1D5BC8F1FA6BA4A0050CE45 /* PinDialogViewController.m in Sources */,
@@ -648,8 +665,8 @@
 				C1D5BCB61FA882F80050CE45 /* GetUserInfoRequest.m in Sources */,
 				C1D5BC971FA80B3E0050CE45 /* BaseViewController.m in Sources */,
 				C1D5BCBC1FA885610050CE45 /* LogoutRequest.m in Sources */,
-				C1D5BC9F1FA81F190050CE45 /* InstrumentChooserView.m in Sources */,
 				C13D1AC51FBC107800C29CB0 /* MoneyInput.m in Sources */,
+				C1B3EB711FBD6F2C009C99FB /* RLMPaymentInstrument.m in Sources */,
 				C10736E21FA21E1E00646ACE /* PaymentViewController.m in Sources */,
 				C1B29B831FA06FBD00EA873F /* main.m in Sources */,
 				C1D5BC921FA6E2CF0050CE45 /* ReceiptViewController.m in Sources */,
@@ -663,6 +680,7 @@
 				C1D5BCAA1FA8471B0050CE45 /* CurrencyFormatter.m in Sources */,
 				C10736CA1FA14E8D00646ACE /* Receipt.m in Sources */,
 				C10736D01FA1753100646ACE /* PaymentData.m in Sources */,
+				C1B3EB731FBD6F33009C99FB /* RLMUser.m in Sources */,
 				C1B29B751FA06FBD00EA873F /* AppDelegate.m in Sources */,
 				C1481A471FA598D30044FAA3 /* DialogViewController.m in Sources */,
 				C10736B81FA093E500646ACE /* PaymentInstrument.m in Sources */,

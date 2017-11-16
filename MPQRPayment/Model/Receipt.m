@@ -15,17 +15,6 @@
 
 - (id _Nonnull) initWithTransaction:(Transaction* _Nonnull) transaction paymentData:(PaymentData* _Nonnull) paymentData
 {
-    /*
-    _lblTotal.text = [NSString stringWithFormat:@"%@ %@"
-                      ,[CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_transaction.currencyNumericCode]]
-                      ,[CurrencyFormatter getFormattedAmountWithValue:_transaction.transactionAmount + _transaction.tipAmount]];
-    
-    _lblMerchant.text = _transaction.merchantName;
-    _lblCity.text = _paymentData.merchant.city;
-    _lblAmount.text = [CurrencyFormatter getFormattedAmountWithValue:_transaction.transactionAmount];
-    _lblTips.text = [CurrencyFormatter getFormattedAmountWithValue:_transaction.tipAmount];
-    _lblMaskedIdentifier.text = _transaction.maskedIdentifier;
-    */
     if (self = [super init]) {
         _merchantName = transaction.merchantName;
         _merchantCity = paymentData.merchant.city;
@@ -35,6 +24,7 @@
         _currencyCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:transaction.currencyNumericCode]];
         _maskedPan = transaction.maskedIdentifier;
         _methodType = @"";
+        _currencyNumericCode = transaction.currencyNumericCode;
     }
     return self;
 }

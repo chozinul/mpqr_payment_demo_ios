@@ -11,6 +11,8 @@
 #import "CurrencyFormatter.h"
 #import "Receipt.h"
 
+@import MasterpassQRCoreSDK;
+
 @interface ReceiptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblTotal;
 @property (weak, nonatomic) IBOutlet UILabel *lblMerchant;
@@ -33,14 +35,16 @@
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_receipt.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
     _lblTotal.text = [NSString stringWithFormat:@"%@ %@"
                       ,_receipt.currencyCode
-                      ,[CurrencyFormatter getFormattedAmountWithValue:_receipt.totalAmount]];
+                      ,[CurrencyFormatter getFormattedAmountWithValue:_receipt.totalAmount decimalPoint:decimalPoint]];
 
     _lblMerchant.text = _receipt.merchantName;
     _lblCity.text = _receipt.merchantCity;
-    _lblAmount.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.transactionAmount];
-    _lblTips.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.tipAmount];
+    _lblAmount.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.transactionAmount decimalPoint:decimalPoint];
+    _lblTips.text = [CurrencyFormatter getFormattedAmountWithValue:_receipt.tipAmount decimalPoint:decimalPoint];
     _lblMaskedIdentifier.text = _receipt.maskedPan;
     
     

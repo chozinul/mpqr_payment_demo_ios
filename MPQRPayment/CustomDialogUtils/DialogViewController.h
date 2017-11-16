@@ -30,6 +30,6 @@ typedef void (^DialogViewControllerCompletionBlock)(DialogViewController* _Nonnu
  This is how we call the dialog by passing caller view controller
  The positive and negative response block is called after the dialog disappear
  */
-- (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success withNoBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success;
+- (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success withNoBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) failure;
 
 @end

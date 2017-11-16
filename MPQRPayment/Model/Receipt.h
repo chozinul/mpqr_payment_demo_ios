@@ -25,6 +25,7 @@
 @property NSString* _Nullable currencyCode;
 @property NSString* _Nullable maskedPan;
 @property NSString* _Nullable methodType;
+@property NSString* _Nullable currencyNumericCode;
 
 - (id _Nonnull) initWithTransaction:(Transaction* _Nonnull) transaction paymentData:(PaymentData* _Nonnull) paymentData;
 

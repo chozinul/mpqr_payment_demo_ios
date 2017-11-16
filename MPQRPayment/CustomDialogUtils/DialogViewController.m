@@ -113,6 +113,7 @@
 }
 */
 
+#pragma mark - Present self
 - (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success withNoBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) fail
 {
     _completionBlockFail = fail;

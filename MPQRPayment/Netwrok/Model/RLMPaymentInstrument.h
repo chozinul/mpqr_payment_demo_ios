@@ -6,14 +6,14 @@
 //  Copyright © 2017 Mastercard. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Realm/Realm.h>
 
-@class RLMPaymentInstrument;
 /**
  Used to store cards information of the user
  The class is used both in server and app
+ This class is used in server only as it is reading from database
  */
-@interface PaymentInstrument : NSObject
+@interface RLMPaymentInstrument : RLMObject
 
 @property long id;
 @property NSString* acquirerName;
@@ -24,7 +24,5 @@
 @property NSString* maskedIdentifier;
 @property NSString* currencyNumericCode;
 @property BOOL isDefault;
-
-+ (instancetype) PaymentInstrumentFromRLMPaymentInstrument:(RLMPaymentInstrument*) rlmPaymentInstrument;
 
 @end

@@ -6,27 +6,9 @@
 //  Copyright © 2017 Mastercard. All rights reserved.
 //
 
-#import "Transaction.h"
 #import "RLMTransaction.h"
 
-@implementation Transaction
-
-+ (instancetype) TransactionFromRLMTransaction:(RLMTransaction*) rlmTransaction
-{
-    Transaction* transaction = [Transaction new];
-    
-    transaction.referenceId = rlmTransaction.referenceId;
-    transaction.invoiceNumber = rlmTransaction.invoiceNumber;
-    transaction.instrumentIdentifier = rlmTransaction.instrumentIdentifier;
-    transaction.maskedIdentifier = rlmTransaction.maskedIdentifier;
-    transaction.transactionAmount = rlmTransaction.transactionAmount;
-    transaction.tipAmount = rlmTransaction.tipAmount;
-    transaction.currencyNumericCode = rlmTransaction.currencyNumericCode;
-    transaction.transactionDate = rlmTransaction.transactionDate;
-    transaction.merchantName = rlmTransaction.merchantName;
-    
-    return transaction;
-}
+@implementation RLMTransaction
 
 - (NSString*) getFormattedTransactionDate
 {
@@ -38,13 +20,13 @@
 
 - (BOOL) isEqual:(id _Nullable)object
 {
-    if (![object isKindOfClass:[Transaction class]]) {
+    if (![object isKindOfClass:[RLMTransaction class]]) {
         return false;
     }
     if (self == object) {
         return true;
     }
-    Transaction* other = (Transaction*) object;
+    RLMTransaction* other = (RLMTransaction*) object;
     BOOL referenceIdEqual = (!self.referenceId && !other.referenceId) ||[self.referenceId isEqualToString:other.referenceId];
     BOOL invoiceNumberEqual = (!self.invoiceNumber && !other.invoiceNumber) ||[self.invoiceNumber isEqualToString:other.invoiceNumber];
     BOOL maskedIdentifierEqual = (!self.maskedIdentifier && !other.maskedIdentifier) ||[self.maskedIdentifier isEqualToString:other.maskedIdentifier];

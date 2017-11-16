@@ -28,6 +28,7 @@
 
 @import FSPagerView;
 @import MasterpassQRScanSDK;
+@import MasterpassQRCoreSDK;
 @import AVFoundation;
 
 /**
@@ -53,6 +54,7 @@
  - Add additional UI componet that is not initialized from NIB:
  - Setup additional appearance that is not done in NIB: UINavigation bar appearance
  - Call the Login page when the application started, it only call once, unless the user logout
+ - It update the user information after user do login
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,31 +75,16 @@
                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(btnLogoutPressed)];
     self.navigationItem.rightBarButtonItems = @[barBtnLogout];
     
-    LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+    [self openLoginDialog];
 }
 
 /**
  This method is called everytime the view controller appeared from other page
- - It update the user information after user do login (can be improved: as it is not so straight forward)
  - It also refresh the content of the user interface
  */
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
-    if (strAccessCode) {
-        GetUserInfoRequest* request = [[GetUserInfoRequest alloc] initWithAccessCode:strAccessCode];
-        [[MPQRService sharedInstance] getUserWithParameters:request
-                                                    success:^(User* user){
-                                                        [UserManager sharedInstance].currentUser = user;
-                                                        [self reloadUserInterface];
-                                                    } failure:^(NSError* error){
-                                                        [self showAlertWithTitle:@"User Not Found" message:@"Related user with this account is not found. Please try again later or contact our administrator."];
-                                                    }];
-        
-    }
     [self reloadUserInterface];
 }
 
@@ -128,10 +115,6 @@
 
 #pragma mark - Actions
 
-- (void) btnSettingPressed
-{
-}
-
 /**
  It prompt the user if they want to logout of the application
  It call server that the user logging out
@@ -152,13 +135,9 @@
                                                                 success:^(LoginResponse* response){
                                                                 } failure:^(NSError* error){
                                                                 }];
-                     
                      [LoginManager sharedInstance].loginInfo = nil;
                      [UserManager sharedInstance].currentUser = nil;
-                     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-                     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
-                     
-
+                     [self openLoginDialog];
                      
                  } withNoBlock:^(DialogViewController* dialog){
                  }];
@@ -179,8 +158,8 @@
  It call the scanner page
  It call the payment manager to parse the scan result
  It call the payment page and pass the parsed data
- (can be improved: do this process in the payment manager)
  */
+
 - (IBAction)startScan:(id)sender {
     if (![QRCodeReader isAvailable] || ![QRCodeReader supportsQRCode]) {
         return;
@@ -261,6 +240,29 @@
                       }];
 }
 
+- (void) openLoginDialog
+{
+    LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [loginVC showDialogWithContex:self.navigationController
+                     withYesBlock:^(LoginViewController* dialog){
+                         NSString* strAccessCode = [LoginManager sharedInstance].loginInfo.accessCode;
+                         if (strAccessCode) {
+                             GetUserInfoRequest* request = [[GetUserInfoRequest alloc] initWithAccessCode:strAccessCode];
+                             [[MPQRService sharedInstance] getUserWithParameters:request
+                                                                         success:^(User* user){
+                                                                             [UserManager sharedInstance].currentUser = user;
+                                                                             [self reloadUserInterface];
+                                                                         } failure:^(NSError* error){
+                                                                             [self showAlertWithTitle:@"User Not Found" message:@"Related user with this account is not found. Please try again later or contact our administrator."];
+                                                                         }];
+                             
+                         }
+                         [self reloadUserInterface];
+                     } withNoBlock:^(LoginViewController* dialog){
+                         
+                     }];
+}
+
 #pragma mark - Update UI
 /**
  Reload the card
@@ -282,9 +284,11 @@
         // Delay 0.1 seconds
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [_pagerView scrollToItemAtIndex:index animated:NO];
-            RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
+            NSArray<PaymentInstrument*> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
             PaymentInstrument* instr = [instruments objectAtIndex:index];
-            _balanceDisplay.text = [CurrencyFormatter getFormattedAmountWithValue:instr.balance];
+            NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:instr.currencyNumericCode]];
+            int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
+            _balanceDisplay.text = [CurrencyFormatter getFormattedAmountWithValue:instr.balance decimalPoint:decimalPoint];
         });
     }
 }
@@ -303,7 +307,7 @@
 - (FSPagerViewCell * _Nonnull)pagerView:(FSPagerView * _Nonnull)pagerView cellForItemAtIndex:(NSInteger)index {
     FSPagerViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:@"cell" atIndex:index];
     
-    RLMArray<PaymentInstrument*><PaymentInstrument> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
+    NSArray<PaymentInstrument*> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
     PaymentInstrument* instr = [instruments objectAtIndex:index];
     
     NSString* strImageName = @"mastercard_black";

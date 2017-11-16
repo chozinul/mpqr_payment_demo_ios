@@ -6,37 +6,28 @@
 //  Copyright © 2017 Mastercard. All rights reserved.
 //
 
-#import "PaymentInstrument.h"
 #import "RLMPaymentInstrument.h"
 
-@implementation PaymentInstrument
+@implementation RLMPaymentInstrument
 
-+ (instancetype) PaymentInstrumentFromRLMPaymentInstrument:(RLMPaymentInstrument*) rlmPaymentInstrument
-{
-    PaymentInstrument* paymentInstrument = [PaymentInstrument new];
-    
-    paymentInstrument.id = rlmPaymentInstrument.id;
-    paymentInstrument.acquirerName = rlmPaymentInstrument.acquirerName;
-    paymentInstrument.issuerName = rlmPaymentInstrument.issuerName;
-    paymentInstrument.name = rlmPaymentInstrument.name;
-    paymentInstrument.methodType = rlmPaymentInstrument.methodType;
-    paymentInstrument.balance = rlmPaymentInstrument.balance;
-    paymentInstrument.maskedIdentifier = rlmPaymentInstrument.maskedIdentifier;
-    paymentInstrument.currencyNumericCode = rlmPaymentInstrument.currencyNumericCode;
-    paymentInstrument.isDefault = rlmPaymentInstrument.isDefault;
-    
-    return paymentInstrument;
-}
+//- (NSString*) getFormattedAmount{
+//    NSNumberFormatter * formatter = [NSNumberFormatter new];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
+//    [formatter setLocale:[NSLocale currentLocale]];
+//    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:self.balance]];
+//    return newString;
+//}
 
 - (BOOL) isEqual:(id _Nullable)object
 {
-    if (![object isKindOfClass:[PaymentInstrument class]]) {
+    if (![object isKindOfClass:[RLMPaymentInstrument class]]) {
         return false;
     }
     if (self == object) {
         return true;
     }
-    PaymentInstrument* other = (PaymentInstrument*) object;
+    RLMPaymentInstrument* other = (RLMPaymentInstrument*) object;
     BOOL idEqual = self.id == other.id;
     BOOL acquirerNameEqual = (!self.acquirerName && !other.acquirerName) ||[self.acquirerName isEqualToString:other.acquirerName];
     BOOL issuerNameEqual = (!self.issuerName && !other.issuerName) ||[self.issuerName isEqualToString:other.issuerName];

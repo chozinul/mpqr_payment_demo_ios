@@ -15,6 +15,11 @@
 #import "LoginRequest.h"
 
 @interface LoginViewController ()
+
+
+@property LoginViewControllerCompletionBlock _Nullable completionBlockSuccess;
+@property LoginViewControllerCompletionBlock _Nullable completionBlockFail;
+
 @property (weak, nonatomic) IBOutlet UITextField *accessCode;
 @property (weak, nonatomic) IBOutlet UITextField *pin;
 @property (weak, nonatomic) IBOutlet UIView *section4;
@@ -44,12 +49,6 @@
     [self setInitialAccesscode];
 }
 
-- (void) setInitialAccesscode
-{
-    if (_accessCode.text.length == 0) {
-        _accessCode.text = [LoginManager sharedInstance].lastUser;
-    }
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -92,7 +91,9 @@
     [[MPQRService sharedInstance] loginWithParameters:lRequest
                                               success:^(LoginResponse* lResponse){
                                                   [LoginManager sharedInstance].loginInfo = lResponse;
-                                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                                  [self dismissViewControllerAnimated:YES completion:^(){
+                                                      _completionBlockSuccess(self);
+                                                  }];
                                               } failure:^(NSError* error){
                                                   DialogViewController* dialogVC = [DialogViewController new];
                                                   dialogVC.dialogMessage = @"Login failed, please enter a valid access code and 6 digit pin.";
@@ -124,6 +125,14 @@
     return YES;
 }
 
+- (void) setInitialAccesscode
+{
+    if (_accessCode.text.length == 0) {
+        _accessCode.text = [LoginManager sharedInstance].lastUser;
+    }
+}
+
+
 #pragma mark - keyboard movements
 - (void)keyboardWillShow:(NSNotification *)notification
 {
@@ -145,4 +154,12 @@
     }];
 }
 
+#pragma mark - Present Self
+- (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(LoginViewController* _Nonnull loginVC)) success withNoBlock:(nullable void (^)(LoginViewController* _Nonnull loginVC)) failure
+{
+    _completionBlockFail = failure;
+    _completionBlockSuccess = success;
+    self.modalPresentationStyle = UIModalPresentationOverCurrentContext | UIModalPresentationFullScreen;
+    [vc presentViewController:self animated:NO completion:nil];
+}
 @end

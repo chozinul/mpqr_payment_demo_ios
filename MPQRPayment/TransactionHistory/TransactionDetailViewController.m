@@ -37,9 +37,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _lblTotal.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:_transaction.transactionAmount + _transaction.tipAmount]];
-    _lblTip.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:self.transaction.tipAmount]];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_transaction.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
+    _lblTotal.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:_transaction.transactionAmount + _transaction.tipAmount decimalPoint:decimalPoint]];
+    _lblTip.text = [NSString stringWithFormat:@"%@ %@", [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:self.transaction.currencyNumericCode]],[CurrencyFormatter getFormattedAmountWithValue:self.transaction.tipAmount decimalPoint:decimalPoint]];
     _lblDate.text = [self.transaction getFormattedTransactionDate];
     
     data = @[@{@"title":@"MERCHANT NAME",

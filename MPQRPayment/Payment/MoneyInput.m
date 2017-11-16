@@ -76,7 +76,7 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_lblTitle]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_lblTitle)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_txtValue]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_txtValue)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_viewLine]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_viewLine)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[_lblTitle][_txtValue(50)][_viewLine(2)]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_lblTitle,_txtValue,_viewLine)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_lblTitle][_txtValue(30)][_viewLine(2)]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_lblTitle,_txtValue,_viewLine)]];
 }
 
 #pragma mark - Properties
@@ -164,9 +164,11 @@
     text = [text stringByReplacingOccurrencesOfString:@"%" withString:@""];
     text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
     double number = [text intValue] * (1.0/pow(10,_decimalDigit));
-    NSString* strFormat = [NSString stringWithFormat:@"%%.%df", _decimalDigit];
+    NSString* strFormat;
     if (_percentaged) {
-        strFormat = [NSString stringWithFormat:@"%%.%df %%%%", _decimalDigit];
+        strFormat = [NSString stringWithFormat:@"%%.%dlf %%%%", _decimalDigit];
+    }else{
+        strFormat = [NSString stringWithFormat:@"%%.%dlf", _decimalDigit];
     }
     NSString* finalText = [NSString stringWithFormat:strFormat, number];
     textField.text = finalText;

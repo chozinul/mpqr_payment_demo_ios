@@ -47,7 +47,7 @@
                                  failure:(nullable void (^)(NSError * _Nullable error))failure;
 
 - (void) getTransactionsParameters:(nullable id)parameters
-                           success:(nullable void (^)(RLMResults<Transaction*> * _Nullable responseObject))success
+                           success:(nullable void (^)(NSArray<Transaction*> * _Nullable responseObject))success
                            failure:(nullable void (^)(NSError * _Nullable error))failure;
 
 @end

@@ -16,7 +16,7 @@
 #import "TransactionsRequest.h"
 #import "LoginManager.h"
 #import "LoginResponse.h"
-
+@import MasterpassQRCoreSDK;
 @import Realm;
 
 @interface TransactionViewCell ()
@@ -66,7 +66,7 @@ get the data from the MPQR server
     NSString* accessCode = [LoginManager sharedInstance].loginInfo.accessCode;
     TransactionsRequest* request = [[TransactionsRequest alloc] initWithAccessCode:accessCode senderCardIdentifier:cardID];
     [[MPQRService sharedInstance] getTransactionsParameters:request
-                                                    success:^(RLMResults<Transaction*> *list){
+                                                    success:^(NSArray<Transaction*> *list){
                                                         
                                                         NSMutableArray* array = [NSMutableArray array];
                                                         for(int i = 0; i < list.count; i++)
@@ -103,8 +103,10 @@ get the data from the MPQR server
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TransactionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionViewCell" forIndexPath:indexPath];
     Transaction* trans = [_transactionList objectAtIndex:indexPath.row];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:trans.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
     cell.lblMerchant.text = trans.merchantName;
-    cell.lblMoney.text = [NSString stringWithFormat:@"%@", [CurrencyFormatter getFormattedAmountWithValue:trans.transactionAmount + trans.tipAmount]];
+    cell.lblMoney.text = [NSString stringWithFormat:@"%@", [CurrencyFormatter getFormattedAmountWithValue:trans.transactionAmount + trans.tipAmount decimalPoint:decimalPoint]];
     cell.lblDate.text = [trans getFormattedTransactionDate];
     return cell;
 }

@@ -23,11 +23,12 @@
     return sharedInstance;
 }
 
+#pragma mark - POST
 - (void) loginWithParameters:(nullable id)parameters
                      success:(nullable void (^)(LoginResponse* _Nullable responseObject))success
                      failure:(nullable void (^)(NSError* _Nullable error))failure
 {
-        [[MPQRServer sharedInstance] GET:@"/login"
+        [[MPQRServer sharedInstance] POST:@"/login"
                               parameters:parameters
                                  success:^(NSURLSessionDataTask* task, id response){
                                      success(response);
@@ -42,21 +43,7 @@
                       failure:(nullable void (^)(NSError * _Nullable error))failure
 {
     
-    [[MPQRServer sharedInstance] GET:@"/logout"
-                          parameters:parameters
-                             success:^(NSURLSessionDataTask* task, id response){
-                                 success(response);
-                             } failure:^(NSURLSessionDataTask* task, NSError* error){
-                                 failure(error);
-                             }];
-}
-
-
-- (void) getUserWithParameters:(nullable id)parameters
-                     success:(nullable void (^)(User* _Nullable responseObject))success
-                     failure:(nullable void (^)(NSError* _Nullable error))failure
-{
-    [[MPQRServer sharedInstance] GET:@"/getuserinfo"
+    [[MPQRServer sharedInstance] POST:@"/logout"
                           parameters:parameters
                              success:^(NSURLSessionDataTask* task, id response){
                                  success(response);
@@ -69,7 +56,7 @@
                                        success:(nullable void (^)(User* _Nullable responseObject))success
                                        failure:(nullable void (^)(NSError * _Nullable error))failure
 {
-    [[MPQRServer sharedInstance] GET:@"/changedefaultcard"
+    [[MPQRServer sharedInstance] POST:@"/changedefaultcard"
                           parameters:parameters
                              success:^(NSURLSessionDataTask* task, id response){
                                  success(response);
@@ -83,7 +70,7 @@
                                  success:(nullable void (^)(id _Nullable responseObject))success
                                  failure:(nullable void (^)(NSError * _Nullable error))failure
 {
-    [[MPQRServer sharedInstance] GET:@"/makepayment"
+    [[MPQRServer sharedInstance] POST:@"/makepayment"
                           parameters:parameters
                              success:^(NSURLSessionDataTask* task, id response){
                                  success(response);
@@ -92,11 +79,25 @@
                              }];
 }
 
+#pragma mark - GET
 - (void) getTransactionsParameters:(nullable id)parameters
-                           success:(nullable void (^)(RLMResults<Transaction*> * _Nullable responseObject))success
+                           success:(nullable void (^)(NSArray<Transaction*> * _Nullable responseObject))success
                            failure:(nullable void (^)(NSError * _Nullable error))failure
 {
     [[MPQRServer sharedInstance] GET:@"/transactions"
+                          parameters:parameters
+                             success:^(NSURLSessionDataTask* task, id response){
+                                 success(response);
+                             } failure:^(NSURLSessionDataTask* task, NSError* error){
+                                 failure(error);
+                             }];
+}
+
+- (void) getUserWithParameters:(nullable id)parameters
+                       success:(nullable void (^)(User* _Nullable responseObject))success
+                       failure:(nullable void (^)(NSError* _Nullable error))failure
+{
+    [[MPQRServer sharedInstance] GET:@"/getuserinfo"
                           parameters:parameters
                              success:^(NSURLSessionDataTask* task, id response){
                                  success(response);

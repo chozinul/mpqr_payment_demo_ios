@@ -23,29 +23,28 @@
 #import "LoginResponse.h"
 #import "ChangeDefaultCardRequest.h"
 #import "MakePaymentRequest.h"
+#import "MoneyInput.h"
+#import "CurrencyFormatter.h"
 
 @import MasterpassQRCoreSDK;
 
-@interface PaymentViewController ()<UITextFieldDelegate>
+@interface PaymentViewController ()<UITextFieldDelegate, MoneyInputDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *merchantName;
 @property (weak, nonatomic) IBOutlet UILabel *merchantCity;
 @property (weak, nonatomic) IBOutlet UILabel *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySecond;
-@property (weak, nonatomic) IBOutlet UITextField *amount;
-@property (weak, nonatomic) IBOutlet UILabel *flatTipTitle;
-@property (weak, nonatomic) IBOutlet UITextField *flatTip;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmount;
 @property (weak, nonatomic) IBOutlet UILabel *maskedIdentifier;
 @property (weak, nonatomic) IBOutlet UIView *section4;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightOfSecondSection;
-@property (weak, nonatomic) IBOutlet UIView *tipSection;
+@property (weak, nonatomic) IBOutlet MoneyInput *miTransactionAmount;
+@property (weak, nonatomic) IBOutlet MoneyInput *miTipAmount;
 
 @end
 
 /**
  This class is responsible for payment to be done
  Change default card feature is also available
- (can be improved: make custom control for textfield)
  */
 @implementation PaymentViewController
 
@@ -67,15 +66,9 @@
     
     //amount of money
     [self setInitialAmount];
-    _amount.delegate = self;
-    _flatTip.delegate = self;
-    [_amount addTarget:self
-                    action:@selector(textFieldDidChange:)
-          forControlEvents:UIControlEventEditingChanged];
-    [_flatTip addTarget:self
-                    action:@selector(textFieldDidChange:)
-          forControlEvents:UIControlEventEditingChanged];
-    
+    _miTransactionAmount.delegate = self;
+    _miTipAmount.delegate = self;
+
     //back button
     self.navigationItem.hidesBackButton = TRUE;
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -145,6 +138,7 @@
                  } withNoBlock:^(DialogViewController* dialog){
                      
                  }];
+    
 }
 
 /**
@@ -224,23 +218,7 @@
 /**
  Format the text 
  */
-#pragma mark - textfield formating
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    text = [text stringByReplacingOccurrencesOfString:@"." withString:@""];
-    double number = [text intValue] * 0.01;
-    textField.text = [NSString stringWithFormat:@"%.2lf", number];
-    [self textFieldDidChange:textField];
-    return NO;
-}
-
+#pragma mark - Money Input Delegate
 - (void)textFieldDidChange:(UITextField *)textField
 {
     [self updateUITotalAmount];
@@ -249,31 +227,43 @@
 #pragma mark - Tips and Amount Calculation
 - (void) setInitialAmount
 {
-
-    _amount.text = [NSString stringWithFormat:@"%.2lf", _paymentData.transactionAmount];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_paymentData.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
+    _miTransactionAmount.decimalDigit = decimalPoint;
+    _miTipAmount.decimalDigit = decimalPoint;
+    
+//    _miTransactionAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.transactionAmount];
+    _miTransactionAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.transactionAmount decimalPoint:decimalPoint];
     if((int)_paymentData.transactionAmount)
     {
-        _amount.enabled = false;
+        _miTransactionAmount.enabled = false;
     }else
     {
-        _amount.enabled = true;
+        _miTransactionAmount.enabled = true;
     }
     
     switch (_paymentData.tipType) {
         case percentageConvenienceFee:
-            _flatTip.text = [NSString stringWithFormat:@"%.2lf %%", _paymentData.tip];
-            _flatTip.enabled = false;
+            _miTipAmount.strTitle = @"Percentage Tip";
+            _miTipAmount.percentaged = true;
+            _miTipAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
+            _miTipAmount.enabled = false;
+            _miTipAmount.decimalDigit = 2;
             break;
         case flatConvenienceFee:
-            _flatTip.text = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
-            _flatTip.enabled = false;
+            _miTipAmount.percentaged = false;
+//            _miTipAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
+            _miTipAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.tip decimalPoint:decimalPoint];
+            _miTipAmount.enabled = false;
             break;
         case promptedToEnterTip:
-            _flatTip.text = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
-            _flatTip.enabled = true;
+            _miTipAmount.percentaged = false;
+//            _miTipAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
+            _miTipAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.tip decimalPoint:decimalPoint];
+            _miTipAmount.enabled = true;
             break;
         default:
-            _tipSection.hidden = TRUE;
+            _miTipAmount.hidden = TRUE;
             _heightOfSecondSection.constant = 98;
             break;
     }
@@ -281,14 +271,18 @@
 
 - (void) updateUITotalAmount
 {
-    _totalAmount.text = [NSString stringWithFormat:@"%.2lf", [self calculateTotalAmount]];
+    NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_paymentData.currencyNumericCode]];
+    int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
+//    _totalAmount.text = [NSString stringWithFormat:@"%.2lf", [self calculateTotalAmount]];
+    NSString* str = [CurrencyFormatter getFormattedAmountWithValue:[self calculateTotalAmount] decimalPoint:decimalPoint];
+    _totalAmount.text = str;
     switch (_paymentData.tipType) {
         case percentageConvenienceFee:
         case flatConvenienceFee:
         case promptedToEnterTip:
             break;
         default:
-            _tipSection.hidden = TRUE;
+            _miTipAmount.hidden = TRUE;
             _heightOfSecondSection.constant = 98;
             break;
     }
@@ -301,13 +295,13 @@
     switch (_paymentData.tipType) {
         case percentageConvenienceFee:
         case flatConvenienceFee:
-            totalAmount = _amount.text.doubleValue + [_paymentData getTipAmount];
+            totalAmount = _miTransactionAmount.strValue.doubleValue + [_paymentData getTipAmount];
             break;
         case promptedToEnterTip:
-            totalAmount = _amount.text.doubleValue + _flatTip.text.doubleValue;
+            totalAmount = _miTransactionAmount.strValue.doubleValue + _miTipAmount.strValue.doubleValue;
             break;
         default:
-            totalAmount = _amount.text.doubleValue;
+            totalAmount = _miTransactionAmount.strValue.doubleValue;
             break;
     }
     return totalAmount;
@@ -323,7 +317,7 @@
             tipAmount = [_paymentData getTipAmount];
             break;
         case promptedToEnterTip:
-            tipAmount = _flatTip.text.doubleValue;
+            tipAmount = _miTipAmount.strValue.doubleValue;
             break;
         default:
             break;
@@ -363,16 +357,6 @@
                       } withNoBlock:^(DialogViewController* dialog){
                       }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 @end

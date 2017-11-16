@@ -10,11 +10,10 @@
 
 /**
  Format the currency from local setting of the phone
- (can be improved: based on the currency of current selected card)
  */
 @interface CurrencyFormatter : NSObject
 
 
-+ (NSString*) getFormattedAmountWithValue:(double) value;
++ (NSString*) getFormattedAmountWithValue:(double) value decimalPoint:(int) decimalPoint;
 
 @end
