@@ -10,6 +10,7 @@
 
 @implementation RLMUser
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (BOOL) isEqual:(id _Nullable)object
 {
     if (![object isKindOfClass:[RLMUser class]]) {
@@ -32,6 +33,7 @@
     && transactionsEqual;
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (NSUInteger)hash
 {
     NSUInteger totalInt=0;

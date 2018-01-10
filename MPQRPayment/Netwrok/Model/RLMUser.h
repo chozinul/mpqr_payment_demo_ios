@@ -15,14 +15,18 @@ RLM_ARRAY_TYPE(RLMPaymentInstrument)
 
 /**
  Used to store user data including cards and transactions
- The class is used both in server and app
  This class is used in server only as it is reading from database
  */
 @interface RLMUser : RLMObject
+///User ID
 @property long id;
+///User first name
 @property NSString* firstName;
+///User last name
 @property NSString* lastName;
+///Payment Instrument/ Cards that belongs to the user
 @property RLMArray<RLMPaymentInstrument*><RLMPaymentInstrument> *paymentInstruments;
+///Transactions that belongs to the user
 @property RLMArray<RLMTransaction*><RLMTransaction> *transactions;
 
 @end

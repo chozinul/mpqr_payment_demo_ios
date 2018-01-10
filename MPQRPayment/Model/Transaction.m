@@ -11,6 +11,7 @@
 
 @implementation Transaction
 
+///Initialize user object from Server Class RLMUser
 + (instancetype) TransactionFromRLMTransaction:(RLMTransaction*) rlmTransaction
 {
     Transaction* transaction = [Transaction new];
@@ -28,6 +29,8 @@
     return transaction;
 }
 
+
+///Covenient accessor to get a formatted date
 - (NSString*) getFormattedTransactionDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -36,6 +39,7 @@
     return [dateFormatter stringFromDate:date];
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (BOOL) isEqual:(id _Nullable)object
 {
     if (![object isKindOfClass:[Transaction class]]) {
@@ -63,6 +67,7 @@
     && merchantNameEqual;
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (NSUInteger)hash
 {
     NSUInteger totalInt=0;

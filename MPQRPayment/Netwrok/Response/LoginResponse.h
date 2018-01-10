@@ -14,7 +14,10 @@
  */
 @interface LoginResponse : RLMObject
 
+///Access code
 @property NSString* accessCode;
+
+//Temporary token for the particular session
 @property NSString* token;
 
 @end

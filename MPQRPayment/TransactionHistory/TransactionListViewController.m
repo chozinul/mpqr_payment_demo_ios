@@ -21,9 +21,13 @@
 
 @interface TransactionViewCell ()
 
+///Icon that indicate transaction is successful
 @property (weak, nonatomic) IBOutlet UIImageView *imgviewStatus;
+///The amount of transaction
 @property (weak, nonatomic) IBOutlet UILabel *lblMoney;
+///The merchant of transaction
 @property (weak, nonatomic) IBOutlet UILabel *lblMerchant;
+///The date of transaction
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 
 @end
@@ -36,13 +40,16 @@
 /**
  This class is to display all the transaction that has been done by particulat payment instrument (card)
  It will retrieve the transaction data from the MPQR server and display it
- 
  */
 @interface TransactionListViewController ()
 
+///Header: acquirer name
 @property (weak, nonatomic) IBOutlet UILabel *lblAcquirer;
+///Header: acquirer identifier
 @property (weak, nonatomic) IBOutlet UILabel *lblMaskedIdentifier;
+///Table view to display the transaction
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+///Transaction list to be displayed
 @property NSArray<Transaction*> * transactionList;
 @end
 

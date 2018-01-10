@@ -22,30 +22,35 @@
  */
 @interface MPQRService : NSObject
 
+///Singleton instant
 + (instancetype _Nonnull )sharedInstance;
 
+///Web API for login
 - (void) loginWithParameters:(nullable id)parameters
                      success:(nullable void (^)(LoginResponse* _Nullable responseObject))success
                      failure:(nullable void (^)(NSError * _Nullable error))failure;
 
-
+///Web API for logout
 - (void) logoutWithParameters:(nullable id)parameters
                      success:(nullable void (^)(id _Nullable responseObject))success
                      failure:(nullable void (^)(NSError * _Nullable error))failure;
 
+///Web API for get user info
 - (void) getUserWithParameters:(nullable id)parameters
                      success:(nullable void (^)(User* _Nullable responseObject))success
                      failure:(nullable void (^)(NSError * _Nullable error))failure;
 
-
+///Web API for changing default card for particular user
 - (void) changeDefaultCardWithParameters:(nullable id)parameters
                        success:(nullable void (^)(User* _Nullable responseObject))success
                        failure:(nullable void (^)(NSError * _Nullable error))failure;
 
+///Web API for make payment
 - (void) makePaymentWithParameters:(nullable id)parameters
                                  success:(nullable void (^)(id _Nullable responseObject))success
                                  failure:(nullable void (^)(NSError * _Nullable error))failure;
 
+///Web API for get list of transaction given particular payment instrument
 - (void) getTransactionsParameters:(nullable id)parameters
                            success:(nullable void (^)(NSArray<Transaction*> * _Nullable responseObject))success
                            failure:(nullable void (^)(NSError * _Nullable error))failure;

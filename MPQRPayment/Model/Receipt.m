@@ -13,6 +13,7 @@
 
 @implementation Receipt
 
+///Initialize user object from Server Class RLMUser
 - (id _Nonnull) initWithTransaction:(Transaction* _Nonnull) transaction paymentData:(PaymentData* _Nonnull) paymentData
 {
     if (self = [super init]) {

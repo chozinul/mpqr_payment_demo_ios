@@ -10,8 +10,12 @@
 #import "BaseViewController.h"
 
 @class Receipt;
+/**
+ Responsible to display receipt of the transaction
+ */
 @interface ReceiptViewController : BaseViewController
 
+///Receipt to be displayed
 @property Receipt* receipt;
 
 @end

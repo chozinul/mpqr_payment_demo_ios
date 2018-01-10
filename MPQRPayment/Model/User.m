@@ -11,6 +11,7 @@
 
 @implementation User
 
+///Initialize user object from Server Class RLMUser
 + (instancetype) UserFromRLMUser:(RLMUser*) rlmUser
 {
     User* user = [User new];
@@ -35,6 +36,7 @@
     return user;
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (BOOL) isEqual:(id _Nullable)object
 {
     if (![object isKindOfClass:[User class]]) {
@@ -57,6 +59,7 @@
     && transactionsEqual;
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used.
 - (NSUInteger)hash
 {
     NSUInteger totalInt=0;

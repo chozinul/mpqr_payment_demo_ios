@@ -10,6 +10,7 @@
 
 @implementation PaymentData
 
+///Convenient accessor to get tip amount in currency
 - (double) getTipAmount
 {
     if (_tipType == percentageConvenienceFee) {
@@ -20,6 +21,7 @@
     }
 }
 
+///Get total transaction amount including the tips
 - (double) getTotal
 {
     return _transactionAmount + [self getTipAmount];

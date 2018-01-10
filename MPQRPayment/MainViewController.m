@@ -240,6 +240,7 @@
                       }];
 }
 
+///Open login page
 - (void) openLoginDialog
 {
     LoginViewController* loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];

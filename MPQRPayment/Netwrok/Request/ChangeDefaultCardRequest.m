@@ -10,6 +10,7 @@
 
 @implementation ChangeDefaultCardRequest
 
+///Initializer of the request with acceess code and the card index
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode index:(int) index
 {
     if (self = [super init]) {

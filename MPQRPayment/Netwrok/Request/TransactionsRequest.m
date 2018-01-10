@@ -10,6 +10,7 @@
 
 @implementation TransactionsRequest
 
+///Initializer of the request with acceess code and card identifier
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode senderCardIdentifier:(long)senderCardIdentifier
 {
     if (self = [super init]) {

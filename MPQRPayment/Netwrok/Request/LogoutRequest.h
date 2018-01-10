@@ -8,6 +8,7 @@
 
 #import "BaseRequest.h"
 
+///Logout request
 @interface LogoutRequest : BaseRequest
 
 @end

@@ -21,6 +21,7 @@
 
 static NSString* _lastUser;
 
+///Singleton object
 + (instancetype _Nonnull)sharedInstance
 {
     static LoginManager *sharedInstance = nil;
@@ -35,12 +36,14 @@ static NSString* _lastUser;
     return sharedInstance;
 }
 
+///setter ffor login info
 - (void) setLoginInfo:(LoginResponse *)loginInfo
 {
     _lastUser = loginInfo.accessCode;
     _loginInfo = loginInfo;
 }
 
+///getter for last user
 - (NSString*) lastUser
 {
     return _lastUser;

@@ -65,7 +65,7 @@
     [bodyView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lblTitle(30)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lblTitle)]];
     
     
-    //add Title
+    //add Description
     UILabel* lblBody = [UILabel new];
     lblBody.translatesAutoresizingMaskIntoConstraints = NO;
     lblBody.text = self.dialogDescription;

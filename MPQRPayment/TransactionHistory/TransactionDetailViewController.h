@@ -10,12 +10,20 @@
 #import "BaseViewController.h"
 
 @class Transaction;
+
+/**
+ Cell to display detailed transaction items
+ */
 @interface TransactionDetailViewCell : UITableViewCell
 
 @end
 
+/**
+ UIViewController to display detailed transaction
+ */
 @interface TransactionDetailViewController : BaseViewController
 
+///Transaction to be display
 @property Transaction* transaction;
 
 @end

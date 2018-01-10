@@ -11,14 +11,18 @@
 
 @interface MoneyInput()<UITextFieldDelegate>
 
+///TextField to input value
 @property UITextField* txtValue;
+///Title of the value
 @property UILabel* lblTitle;
+///New line under value text field, so that it looks like material design
 @property UIView* viewLine;
 
 @end
 
 @implementation MoneyInput
 
+///Initializer
 - (id) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -27,6 +31,7 @@
     return self;
 }
 
+///Initializer from serializable bject
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
@@ -35,12 +40,14 @@
     return self;
 }
 
+///Configure subview in this layoutsubview
 - (void) layoutSubviews
 {
     [super layoutSubviews];
     [self configureSubViews];
 }
 
+///Prepare for interface builder regarding IBDesignable
 - (void) prepareForInterfaceBuilder
 {
     [super prepareForInterfaceBuilder];
@@ -48,6 +55,7 @@
 }
 
 #pragma mark - Helper
+///Added sub-view to the controller
 - (void) addSubviews
 {
     _txtValue = [UITextField new];
@@ -58,6 +66,8 @@
     [self addSubview:_lblTitle];
 
 }
+
+///Configure subviews
 - (void) configureSubViews
 {
     _lblTitle.translatesAutoresizingMaskIntoConstraints = false;
@@ -80,21 +90,25 @@
 }
 
 #pragma mark - Properties
+///Setter
 - (void) setStrTitle:(NSString *)strTitle
 {
     _lblTitle.text = strTitle;
 }
 
+///Getter
 - (NSString*) strTitle
 {
     return _lblTitle.text;
 }
 
+///Setter: set to the field
 - (void) setStrValue:(NSString *)strValue
 {
     [self updateField:_txtValue withText:strValue];
 }
 
+///Getter: Get value in digit only, if there is % remove it
 - (NSString*) strValue
 {
     NSString* text = _txtValue.text;
@@ -103,12 +117,14 @@
     return text;
 }
 
+///Setter: set decimal digit and update the value display
 - (void) setDecimalDigit:(int)decimalDigit
 {
     _decimalDigit = decimalDigit;
     self.strValue = _txtValue.text;
 }
 
+///Getter: Set enable and configure display accordingly
 - (void) setEnabled:(BOOL)enabled
 {
     _enabled = enabled;
@@ -127,6 +143,7 @@
     }
 }
 
+///Set percentage and configure display accordingly
 - (void) setPercentaged:(BOOL)percentaged
 {
     _percentaged = percentaged;
@@ -137,12 +154,14 @@
 }
 
 #pragma mark - textfield formating
+///TextField delegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
+///TextField delegate: configure text field using defined behaviour instead of normal behaviour
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -150,6 +169,7 @@
     return NO;
 }
 
+///TextField delegate
 - (void)textFieldDidChange:(UITextField *)textField
 {
     if([_delegate respondsToSelector:@selector(textFieldDidChange:)])
@@ -158,6 +178,7 @@
     }
 }
 
+///Configure TextField based on the defined behaviour instead of normal behaviour
 - (void) updateField:(UITextField*) textField withText:(NSString*) text
 {
     text = [text stringByReplacingOccurrencesOfString:@"." withString:@""];

@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "BaseRequest.h"
 
+///Login request
 @interface LoginRequest : BaseRequest
 
+///Pin is necessary in login request
 @property NSString* _Nonnull pin;
 
+
+///Initializer of the request with acceess code and pin
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode pin:(NSString* _Nonnull) pin;
 
 @end

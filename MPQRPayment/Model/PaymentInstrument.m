@@ -11,6 +11,7 @@
 
 @implementation PaymentInstrument
 
+///Initialize user object from Server Class RLMUser
 + (instancetype) PaymentInstrumentFromRLMPaymentInstrument:(RLMPaymentInstrument*) rlmPaymentInstrument
 {
     PaymentInstrument* paymentInstrument = [PaymentInstrument new];
@@ -27,7 +28,7 @@
     
     return paymentInstrument;
 }
-
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (BOOL) isEqual:(id _Nullable)object
 {
     if (![object isKindOfClass:[PaymentInstrument class]]) {
@@ -56,7 +57,7 @@
     && currencyNumericCodeEqual
     && isDefault;
 }
-
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (NSUInteger)hash
 {
     NSUInteger totalInt=0;

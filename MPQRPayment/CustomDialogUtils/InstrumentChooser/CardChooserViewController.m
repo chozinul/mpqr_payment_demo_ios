@@ -28,6 +28,9 @@
  */
 @implementation CardChooserViewController
 
+/**
+ * Setup data using payment instrument
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     arrayData = [NSMutableArray array];
@@ -63,15 +66,23 @@
 }
 
 #pragma mark - Table view data source
-
+/**
+ tableView number of section, always 1 section
+ */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
+/**
+ tableView number of row, depend on the number of arrayData
+ */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [UserManager sharedInstance].currentUser.paymentInstruments.count;
+    return arrayData.count;
 }
 
+/**
+ Choose tableViewCell: It uses `InstrumentChooserTableViewCell`
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     InstrumentChooserTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"InstrumentChooserTableViewCell"];
     if (!cell) {
@@ -84,13 +95,18 @@
     return cell;
 }
 
+/**
+ Heigh of tableViewCell = 90
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*) indexPath
 {
     return 90;
 }
 
 #pragma mark - Table view delegate
-
+/**
+ Assign selectedIndex based on the row clicked
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectedIndex = indexPath.row;
@@ -98,6 +114,9 @@
 }
 
 #pragma mark - Configure Cell
+/**
+ Configure tableViewCell based on the instrument payment information
+ */
 - (void) configureCell:(InstrumentChooserTableViewCell*) cell forIndexPath:(NSIndexPath*) indexPath
 {
     PaymentInstrument* instrument = [arrayData objectAtIndex:indexPath.row];

@@ -26,6 +26,7 @@
     return sharedInstance;
 }
 
+///Default card index, corresponding to `[UserManager sharedInstance].currentUser.paymentInstruments`
 - (int) getDefaultCardIndex
 {
     NSArray<PaymentInstrument*> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
@@ -38,6 +39,7 @@
     return -1;
 }
 
+///Default card
 - (PaymentInstrument* _Nullable) getDefaultCard
 {
     NSArray<PaymentInstrument*> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;
@@ -50,6 +52,7 @@
     return nil;
 }
 
+///Get card given card ID
 - (PaymentInstrument* _Nullable) getuserCardWithID:(NSInteger) ID
 {
     NSArray<PaymentInstrument*> *instruments = [UserManager sharedInstance].currentUser.paymentInstruments;

@@ -11,7 +11,10 @@
 
 @interface DialogViewController ()
 
+///Block to be called if negative response is selected
 @property DialogViewControllerCompletionBlock _Nullable completionBlockSuccess;
+
+///Block to be called if positive response is selected
 @property DialogViewControllerCompletionBlock _Nullable completionBlockFail;
 @end
 
@@ -24,11 +27,17 @@
  */
 @implementation DialogViewController
 
+/**
+ Convenient initializer that will assign default positive response and dialog height.
+ */
 - (nonnull id) init
 {
     return [self initWithDialogMessage:@"" positiveResponse:@"OK" negativeResponse:nil dialogHeight:200];
 }
 
+/**
+ Designate initializer for the class.
+ */
 - (nonnull id) initWithDialogMessage:(NSString*) dialogMessage positiveResponse:(NSString*) positiveResponse negativeResponse:(NSString*) negativeResponse dialogHeight:(int) dialogHeight
 {
     if ((self = [super init])) {
@@ -40,6 +49,10 @@
     return self;
 }
 
+/**
+ The function is call after the UI is loaded.
+ It add Header, Body, and Footer section
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -98,22 +111,12 @@
     [self setupFooter:footerView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Present self
+/**
+ Presenting the dialog by passing current context (i.e. UIViewController). The positive and negative block can be set here too.
+ */
 - (void) showDialogWithContex:(UIViewController* _Nonnull) vc withYesBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) success withNoBlock:(nullable void (^)(DialogViewController* _Nonnull dialogVC)) fail
 {
     _completionBlockFail = fail;
@@ -232,6 +235,9 @@
 }
 
 #pragma mark - Action
+/**
+ Action when the positive response is pressed. It will call positive response of the completion block.
+ */
 -(void) btnYesPressed{
     [self dismissViewControllerAnimated:YES completion:^(){
         _completionBlockSuccess(self);
@@ -239,6 +245,9 @@
     
 }
 
+/**
+ Action when the negative response is pressed. It will call negative response of the completion block.
+ */
 - (void) btnNoPressed{
     [self dismissViewControllerAnimated:YES completion:^(){
         _completionBlockFail(self);

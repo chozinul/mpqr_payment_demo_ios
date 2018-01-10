@@ -28,6 +28,14 @@
 
 @import MasterpassQRCoreSDK;
 
+/**
+ This class is responsible for:
+    - Displaying transaction value
+    - Calling other class to modify transaction value
+    - Calling other class to do transaction
+    - Calling receipt upon successful transaction
+    - Change default card feature is also available
+ */
 @interface PaymentViewController ()<UITextFieldDelegate, MoneyInputDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *merchantName;
 @property (weak, nonatomic) IBOutlet UILabel *merchantCity;
@@ -42,10 +50,7 @@
 
 @end
 
-/**
- This class is responsible for payment to be done
- Change default card feature is also available
- */
+
 @implementation PaymentViewController
 
 
@@ -99,6 +104,7 @@
     f.size.width = self.view.bounds.size.width;
     self.section4.frame = f;
     
+    //update the total amount display
     [self updateUITotalAmount];
 }
 
@@ -225,14 +231,13 @@
 }
 
 #pragma mark - Tips and Amount Calculation
+///Configure initial amount for money input
 - (void) setInitialAmount
 {
     NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_paymentData.currencyNumericCode]];
     int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
     _miTransactionAmount.decimalDigit = decimalPoint;
     _miTipAmount.decimalDigit = decimalPoint;
-    
-//    _miTransactionAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.transactionAmount];
     _miTransactionAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.transactionAmount decimalPoint:decimalPoint];
     if((int)_paymentData.transactionAmount)
     {
@@ -252,13 +257,11 @@
             break;
         case flatConvenienceFee:
             _miTipAmount.percentaged = false;
-//            _miTipAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
             _miTipAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.tip decimalPoint:decimalPoint];
             _miTipAmount.enabled = false;
             break;
         case promptedToEnterTip:
             _miTipAmount.percentaged = false;
-//            _miTipAmount.strValue = [NSString stringWithFormat:@"%.2lf", _paymentData.tip];
             _miTipAmount.strValue = [CurrencyFormatter getFormattedAmountWithValue:_paymentData.tip decimalPoint:decimalPoint];
             _miTipAmount.enabled = true;
             break;
@@ -269,11 +272,11 @@
     }
 }
 
+///Update UI for total amount
 - (void) updateUITotalAmount
 {
     NSString* alphaCode = [CurrencyEnumLookup getAlphaCode:[CurrencyEnumLookup enumFor:_paymentData.currencyNumericCode]];
     int decimalPoint = [CurrencyEnumLookup getDecimalPointOfAlphaCode:alphaCode];
-//    _totalAmount.text = [NSString stringWithFormat:@"%.2lf", [self calculateTotalAmount]];
     NSString* str = [CurrencyFormatter getFormattedAmountWithValue:[self calculateTotalAmount] decimalPoint:decimalPoint];
     _totalAmount.text = str;
     switch (_paymentData.tipType) {
@@ -288,7 +291,7 @@
     }
 }
 
-
+///Helper to calculate total amount
 - (double) calculateTotalAmount
 {
     double totalAmount = 0;
@@ -307,7 +310,7 @@
     return totalAmount;
 }
 
-
+///Helper to caculate tip amount
 - (double) calculateTipAmount
 {
     double tipAmount = 0;
@@ -326,6 +329,7 @@
 }
 
 #pragma mark - keyboard movements
+///Keyboard behaviour
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
@@ -337,6 +341,7 @@
     }];
 }
 
+///Keyboard behaviour
 -(void)keyboardWillHide:(NSNotification *)notification
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -347,7 +352,7 @@
 }
 
 #pragma mark - Helper
-
+///Helper: show dialog message
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     DialogViewController* dialogVC = [DialogViewController new];
     dialogVC.dialogMessage = message;

@@ -10,6 +10,7 @@
 
 @implementation LoginRequest
 
+///Initializer of the request with acceess code and pin
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode pin:(NSString* _Nonnull) pin
 {
     if (self = [super init]) {

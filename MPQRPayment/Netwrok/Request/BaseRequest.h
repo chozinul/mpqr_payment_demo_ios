@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ The base request class for all request
+ */
 @interface BaseRequest : NSObject
 
+///All request should contain access code
 @property NSString* _Nullable accessCode;
 
+///Initializer of the request with acceess code
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode;
 
 @end

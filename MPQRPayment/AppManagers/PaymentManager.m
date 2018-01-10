@@ -15,10 +15,12 @@
 @import MasterpassQRCoreSDK;
 
 /**
- Convert push payment data information from MPQR Core SDK to payment data
+    - Responsible for parsing QRCode to Payment data
+    - Convert push payment data information from MPQR Core SDK to payment data
  */
 @implementation PaymentManager
 
+///Singleton object
 + (instancetype _Nonnull)sharedInstance
 {
     static PaymentManager *sharedInstance = nil;
@@ -30,6 +32,7 @@
     return sharedInstance;
 }
 
+///Parse QRCode to PaymentData
 - (void) parseScannedCode:(NSString*_Nullable) code withCompletionBlock:(nullable void (^)(PaymentData* _Nullable paymentData, NSError* _Nullable error)) completionBlock;
 {
     PushPaymentData *pushPaymentData;
@@ -46,6 +49,7 @@
     }
 }
 
+///Convert MPQR PushPaymentData to the app PaymentData
 - (PaymentData*) paymentDataWithPPD:(PushPaymentData*) pushPD
 {
     TipConvenienceIndicator tipInfo = unknownTipConvenienceIndicator;
@@ -87,6 +91,7 @@
     return paymentData;
 }
 
+///Merchant Object from PushPaymentData
 - (Merchant*) merchantDataWithPPD:(PushPaymentData*) pushPD
 {
     Merchant* mer = [Merchant new];

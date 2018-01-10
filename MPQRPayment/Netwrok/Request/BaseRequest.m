@@ -10,6 +10,7 @@
 
 @implementation BaseRequest
 
+///Initializer of the request with acceess code
 - (id _Nonnull) initWithAccessCode:(NSString* _Nonnull) accessCode
 {
     if (self = [super init]) {

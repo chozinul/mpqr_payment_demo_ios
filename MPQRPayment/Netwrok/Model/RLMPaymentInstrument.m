@@ -10,15 +10,7 @@
 
 @implementation RLMPaymentInstrument
 
-//- (NSString*) getFormattedAmount{
-//    NSNumberFormatter * formatter = [NSNumberFormatter new];
-//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-//    [formatter setMaximumFractionDigits:2]; // Set this if you need 2 digits
-//    [formatter setLocale:[NSLocale currentLocale]];
-//    NSString * newString =  [formatter stringFromNumber:[NSNumber numberWithFloat:self.balance]];
-//    return newString;
-//}
-
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (BOOL) isEqual:(id _Nullable)object
 {
     if (![object isKindOfClass:[RLMPaymentInstrument class]]) {
@@ -48,6 +40,7 @@
     && isDefault;
 }
 
+///Method is needed if we want to make this object a key at a dictionary. Currently it is not being used
 - (NSUInteger)hash
 {
     NSUInteger totalInt=0;

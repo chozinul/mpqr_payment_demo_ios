@@ -12,6 +12,13 @@
 @class DialogViewController;
 typedef void (^DialogViewControllerCompletionBlock)(DialogViewController* _Nonnull dialogVC);
 
+/**
+ This class is to show dialog as alert or asking user an input
+ The UI is devided into header, body, and footer
+ Header contain Mastercard logo
+ Body contain the actual aler message or expected input
+ Footer contain positive button (i.e. YES) or negative button (i.e. NO)
+ */
 @interface DialogViewController : BaseViewController
 
 ///Dialog message to be displayed

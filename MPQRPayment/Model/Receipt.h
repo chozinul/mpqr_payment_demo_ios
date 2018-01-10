@@ -17,16 +17,26 @@
  */
 @interface Receipt : NSObject
 
+///Merchant name
 @property NSString* _Nullable merchantName;
+///Merchant city
 @property NSString* _Nullable merchantCity;
+///Transaction amount in currency
 @property double transactionAmount;
+///Tip amount in currency
 @property double tipAmount;
+///Total amount in currency
 @property double totalAmount;
+///Currency Code
 @property NSString* _Nullable currencyCode;
+///Masked pan / payment instrument identifier
 @property NSString* _Nullable maskedPan;
+///Method type
 @property NSString* _Nullable methodType;
+///Currency numberic code
 @property NSString* _Nullable currencyNumericCode;
 
+///Initialize user object from Server Class RLMUser
 - (id _Nonnull) initWithTransaction:(Transaction* _Nonnull) transaction paymentData:(PaymentData* _Nonnull) paymentData;
 
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseRequest.h"
 
+///Get user info request
 @interface GetUserInfoRequest : BaseRequest
 
 @end

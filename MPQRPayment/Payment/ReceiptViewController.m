@@ -13,6 +13,9 @@
 
 @import MasterpassQRCoreSDK;
 
+/**
+ Responsible to display receipt of the transaction
+ */
 @interface ReceiptViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblTotal;
 @property (weak, nonatomic) IBOutlet UILabel *lblMerchant;

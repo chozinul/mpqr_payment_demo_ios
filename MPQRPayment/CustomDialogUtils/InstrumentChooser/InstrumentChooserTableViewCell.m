@@ -9,7 +9,7 @@
 #import "InstrumentChooserTableViewCell.h"
 
 /**
- This class contain radio button display
+ This class is the tableViewCell to display payment instrument information, it contains radio button display. The radio button is to distinguish the selected card
  */
 @implementation InstrumentChooserTableViewCell
 

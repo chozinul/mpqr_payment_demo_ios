@@ -13,14 +13,16 @@
  */
 @interface MPQRServer : RLMObject
 
+///Singleton object
 + (instancetype _Nonnull )sharedInstance;
 
+///Middleware REST API interface: GET method
 - (nullable NSURLSessionDataTask *)GET:(nullable NSString *)URLString
                             parameters:(nullable id)parameters
                                success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 
-
+///Middleware REST API interface: POST method
 - (nullable NSURLSessionDataTask *)POST:(nullable NSString *)URLString
                             parameters:(nullable id)parameters
                                success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success

@@ -10,6 +10,7 @@
 
 @implementation MakePaymentRequest
 
+///Initializer of the request with acceess code and all parameter required
 - (id _Nonnull) initWithAccesCode:(NSString*_Nullable) accessCode senderID:(long) senderID senderCardID:(long) senderCardID receiverCardNumber:(NSString* _Nullable) receiverCardNumber receiverName:(NSString* _Nullable) receiverName currency:(NSString* _Nullable) currency transactionAmountTotal:(double) transactionAmountTotal tipAmount:(double) tipAmount terminalNumber:(NSString* _Nullable) terminalNumber
 {
     if (self = [super init]) {

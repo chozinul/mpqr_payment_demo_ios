@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ This class is base view controller for all controller in payment module
+ This is necessary if we need to define something in the future, such as analytics
+ */
 @interface BaseViewController : UIViewController
 
 @end

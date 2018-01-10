@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 /**
- Format the currency from local setting of the phone
+ Utility class to format the currency based in the number of decimal value given
  */
 @interface CurrencyFormatter : NSObject
 
-
+/**
+ Format the currency based in the number of decimal value given
+ */
 + (NSString*) getFormattedAmountWithValue:(double) value decimalPoint:(int) decimalPoint;
 
 @end
